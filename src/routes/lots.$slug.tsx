@@ -95,16 +95,20 @@ function LotDetail() {
                   Bid on this lot
                 </Cta>
                 {auction && (
-                  <Cta to="/auctions/$slug" variant="outline" size="md" withArrow={false} params={{ slug: auction.slug }} className="w-full">
+                  <Link
+                    to="/auctions/$slug"
+                    params={{ slug: auction.slug }}
+                    className="flex w-full items-center justify-center border border-ink px-6 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-ink transition-colors hover:bg-ink hover:text-white"
+                  >
                     View full auction
-                  </Cta>
+                  </Link>
                 )}
               </div>
             </div>
 
             {lot.specs && lot.specs.length > 0 && (
               <dl className="mt-6 divide-y divide-border border-y border-border">
-                {lot.specs.map((s) => (
+                {lot.specs.map((s: { label: string; value: string }) => (
                   <div key={s.label} className="flex items-baseline justify-between gap-4 py-3">
                     <dt className="text-xs uppercase tracking-[0.14em] text-muted-foreground">{s.label}</dt>
                     <dd className="text-sm font-semibold text-ink">{s.value}</dd>
