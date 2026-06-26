@@ -35,23 +35,23 @@ export function SiteHeader() {
       <div className="container-x flex items-center justify-between gap-6">
         <BrandLockup className="shrink-0" />
 
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
           {NAV_LINKS.map((l) => (
             <Link
               key={l.to}
               to={l.to}
               activeProps={{ className: "text-ink after:scale-x-100" }}
-              className="relative text-[13px] font-semibold uppercase tracking-[0.1em] text-foreground/70 transition-colors hover:text-ink after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:scale-x-0 after:bg-gold after:transition-transform after:duration-200 hover:after:scale-x-100"
+              className="relative whitespace-nowrap text-[12px] font-semibold uppercase tracking-[0.1em] text-foreground/70 transition-colors hover:text-ink after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:scale-x-0 after:bg-gold after:transition-transform after:duration-200 hover:after:scale-x-100"
             >
               {l.label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <a
             href={siteConfig.phoneHref}
-            className="hidden items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.12em] text-foreground/70 transition-colors hover:text-ink xl:flex"
+            className="hidden items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.12em] text-foreground/70 transition-colors hover:text-ink 2xl:flex"
             aria-label={`Call ${siteConfig.phone}`}
           >
             <Phone className="size-3.5 text-gold" />
