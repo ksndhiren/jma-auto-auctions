@@ -9,38 +9,351 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SellRouteImport } from './routes/sell'
+import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as HowToBuyRouteImport } from './routes/how-to-buy'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CategoriesRouteImport } from './routes/categories'
+import { Route as AuctionsRouteImport } from './routes/auctions'
+import { Route as AuctionAlertsRouteImport } from './routes/auction-alerts'
+import { Route as AccessibilityRouteImport } from './routes/accessibility'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
+import { Route as LotsSlugRouteImport } from './routes/lots.$slug'
+import { Route as CategoriesSlugRouteImport } from './routes/categories.$slug'
+import { Route as AuctionsSlugRouteImport } from './routes/auctions.$slug'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SellRoute = SellRouteImport.update({
+  id: '/sell',
+  path: '/sell',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowToBuyRoute = HowToBuyRouteImport.update({
+  id: '/how-to-buy',
+  path: '/how-to-buy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoriesRoute = CategoriesRouteImport.update({
+  id: '/categories',
+  path: '/categories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuctionsRoute = AuctionsRouteImport.update({
+  id: '/auctions',
+  path: '/auctions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuctionAlertsRoute = AuctionAlertsRouteImport.update({
+  id: '/auction-alerts',
+  path: '/auction-alerts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccessibilityRoute = AccessibilityRouteImport.update({
+  id: '/accessibility',
+  path: '/accessibility',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesSlugRoute = ResourcesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ResourcesRoute,
+} as any)
+const LotsSlugRoute = LotsSlugRouteImport.update({
+  id: '/lots/$slug',
+  path: '/lots/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoriesSlugRoute = CategoriesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => CategoriesRoute,
+} as any)
+const AuctionsSlugRoute = AuctionsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => AuctionsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/accessibility': typeof AccessibilityRoute
+  '/auction-alerts': typeof AuctionAlertsRoute
+  '/auctions': typeof AuctionsRouteWithChildren
+  '/categories': typeof CategoriesRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
+  '/how-to-buy': typeof HowToBuyRoute
+  '/privacy': typeof PrivacyRoute
+  '/resources': typeof ResourcesRouteWithChildren
+  '/sell': typeof SellRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
+  '/auctions/$slug': typeof AuctionsSlugRoute
+  '/categories/$slug': typeof CategoriesSlugRoute
+  '/lots/$slug': typeof LotsSlugRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/accessibility': typeof AccessibilityRoute
+  '/auction-alerts': typeof AuctionAlertsRoute
+  '/auctions': typeof AuctionsRouteWithChildren
+  '/categories': typeof CategoriesRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
+  '/how-to-buy': typeof HowToBuyRoute
+  '/privacy': typeof PrivacyRoute
+  '/resources': typeof ResourcesRouteWithChildren
+  '/sell': typeof SellRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
+  '/auctions/$slug': typeof AuctionsSlugRoute
+  '/categories/$slug': typeof CategoriesSlugRoute
+  '/lots/$slug': typeof LotsSlugRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/accessibility': typeof AccessibilityRoute
+  '/auction-alerts': typeof AuctionAlertsRoute
+  '/auctions': typeof AuctionsRouteWithChildren
+  '/categories': typeof CategoriesRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/faq': typeof FaqRoute
+  '/how-to-buy': typeof HowToBuyRoute
+  '/privacy': typeof PrivacyRoute
+  '/resources': typeof ResourcesRouteWithChildren
+  '/sell': typeof SellRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
+  '/auctions/$slug': typeof AuctionsSlugRoute
+  '/categories/$slug': typeof CategoriesSlugRoute
+  '/lots/$slug': typeof LotsSlugRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/accessibility'
+    | '/auction-alerts'
+    | '/auctions'
+    | '/categories'
+    | '/contact'
+    | '/faq'
+    | '/how-to-buy'
+    | '/privacy'
+    | '/resources'
+    | '/sell'
+    | '/sitemap.xml'
+    | '/terms'
+    | '/auctions/$slug'
+    | '/categories/$slug'
+    | '/lots/$slug'
+    | '/resources/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/accessibility'
+    | '/auction-alerts'
+    | '/auctions'
+    | '/categories'
+    | '/contact'
+    | '/faq'
+    | '/how-to-buy'
+    | '/privacy'
+    | '/resources'
+    | '/sell'
+    | '/sitemap.xml'
+    | '/terms'
+    | '/auctions/$slug'
+    | '/categories/$slug'
+    | '/lots/$slug'
+    | '/resources/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/accessibility'
+    | '/auction-alerts'
+    | '/auctions'
+    | '/categories'
+    | '/contact'
+    | '/faq'
+    | '/how-to-buy'
+    | '/privacy'
+    | '/resources'
+    | '/sell'
+    | '/sitemap.xml'
+    | '/terms'
+    | '/auctions/$slug'
+    | '/categories/$slug'
+    | '/lots/$slug'
+    | '/resources/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AccessibilityRoute: typeof AccessibilityRoute
+  AuctionAlertsRoute: typeof AuctionAlertsRoute
+  AuctionsRoute: typeof AuctionsRouteWithChildren
+  CategoriesRoute: typeof CategoriesRouteWithChildren
+  ContactRoute: typeof ContactRoute
+  FaqRoute: typeof FaqRoute
+  HowToBuyRoute: typeof HowToBuyRoute
+  PrivacyRoute: typeof PrivacyRoute
+  ResourcesRoute: typeof ResourcesRouteWithChildren
+  SellRoute: typeof SellRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TermsRoute: typeof TermsRoute
+  LotsSlugRoute: typeof LotsSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sell': {
+      id: '/sell'
+      path: '/sell'
+      fullPath: '/sell'
+      preLoaderRoute: typeof SellRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-to-buy': {
+      id: '/how-to-buy'
+      path: '/how-to-buy'
+      fullPath: '/how-to-buy'
+      preLoaderRoute: typeof HowToBuyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/categories': {
+      id: '/categories'
+      path: '/categories'
+      fullPath: '/categories'
+      preLoaderRoute: typeof CategoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auctions': {
+      id: '/auctions'
+      path: '/auctions'
+      fullPath: '/auctions'
+      preLoaderRoute: typeof AuctionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auction-alerts': {
+      id: '/auction-alerts'
+      path: '/auction-alerts'
+      fullPath: '/auction-alerts'
+      preLoaderRoute: typeof AuctionAlertsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/accessibility': {
+      id: '/accessibility'
+      path: '/accessibility'
+      fullPath: '/accessibility'
+      preLoaderRoute: typeof AccessibilityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +361,90 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources/$slug': {
+      id: '/resources/$slug'
+      path: '/$slug'
+      fullPath: '/resources/$slug'
+      preLoaderRoute: typeof ResourcesSlugRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
+    '/lots/$slug': {
+      id: '/lots/$slug'
+      path: '/lots/$slug'
+      fullPath: '/lots/$slug'
+      preLoaderRoute: typeof LotsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/categories/$slug': {
+      id: '/categories/$slug'
+      path: '/$slug'
+      fullPath: '/categories/$slug'
+      preLoaderRoute: typeof CategoriesSlugRouteImport
+      parentRoute: typeof CategoriesRoute
+    }
+    '/auctions/$slug': {
+      id: '/auctions/$slug'
+      path: '/$slug'
+      fullPath: '/auctions/$slug'
+      preLoaderRoute: typeof AuctionsSlugRouteImport
+      parentRoute: typeof AuctionsRoute
+    }
   }
 }
 
+interface AuctionsRouteChildren {
+  AuctionsSlugRoute: typeof AuctionsSlugRoute
+}
+
+const AuctionsRouteChildren: AuctionsRouteChildren = {
+  AuctionsSlugRoute: AuctionsSlugRoute,
+}
+
+const AuctionsRouteWithChildren = AuctionsRoute._addFileChildren(
+  AuctionsRouteChildren,
+)
+
+interface CategoriesRouteChildren {
+  CategoriesSlugRoute: typeof CategoriesSlugRoute
+}
+
+const CategoriesRouteChildren: CategoriesRouteChildren = {
+  CategoriesSlugRoute: CategoriesSlugRoute,
+}
+
+const CategoriesRouteWithChildren = CategoriesRoute._addFileChildren(
+  CategoriesRouteChildren,
+)
+
+interface ResourcesRouteChildren {
+  ResourcesSlugRoute: typeof ResourcesSlugRoute
+}
+
+const ResourcesRouteChildren: ResourcesRouteChildren = {
+  ResourcesSlugRoute: ResourcesSlugRoute,
+}
+
+const ResourcesRouteWithChildren = ResourcesRoute._addFileChildren(
+  ResourcesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AccessibilityRoute: AccessibilityRoute,
+  AuctionAlertsRoute: AuctionAlertsRoute,
+  AuctionsRoute: AuctionsRouteWithChildren,
+  CategoriesRoute: CategoriesRouteWithChildren,
+  ContactRoute: ContactRoute,
+  FaqRoute: FaqRoute,
+  HowToBuyRoute: HowToBuyRoute,
+  PrivacyRoute: PrivacyRoute,
+  ResourcesRoute: ResourcesRouteWithChildren,
+  SellRoute: SellRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TermsRoute: TermsRoute,
+  LotsSlugRoute: LotsSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
