@@ -106,7 +106,7 @@ export function ContactForm() {
           className="mt-1 size-4 accent-gold"
         />
         <span className="text-muted-foreground">
-          I agree to be contacted by Aucto Auctions. See our{" "}
+          I agree to be contacted by JMA Auto Auctions. See our{" "}
           <a href="/privacy" className="underline hover:text-gold-dark">Privacy Policy</a>.
         </span>
       </label>

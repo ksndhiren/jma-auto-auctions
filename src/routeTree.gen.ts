@@ -18,15 +18,12 @@ import { Route as HowToBuyRouteImport } from './routes/how-to-buy'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CategoriesRouteImport } from './routes/categories'
-import { Route as AuctionsRouteImport } from './routes/auctions'
 import { Route as AuctionAlertsRouteImport } from './routes/auction-alerts'
 import { Route as AccessibilityRouteImport } from './routes/accessibility'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
-import { Route as LotsSlugRouteImport } from './routes/lots.$slug'
 import { Route as CategoriesSlugRouteImport } from './routes/categories.$slug'
-import { Route as AuctionsSlugRouteImport } from './routes/auctions.$slug'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -73,11 +70,6 @@ const CategoriesRoute = CategoriesRouteImport.update({
   path: '/categories',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuctionsRoute = AuctionsRouteImport.update({
-  id: '/auctions',
-  path: '/auctions',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AuctionAlertsRoute = AuctionAlertsRouteImport.update({
   id: '/auction-alerts',
   path: '/auction-alerts',
@@ -103,20 +95,10 @@ const ResourcesSlugRoute = ResourcesSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => ResourcesRoute,
 } as any)
-const LotsSlugRoute = LotsSlugRouteImport.update({
-  id: '/lots/$slug',
-  path: '/lots/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const CategoriesSlugRoute = CategoriesSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
   getParentRoute: () => CategoriesRoute,
-} as any)
-const AuctionsSlugRoute = AuctionsSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => AuctionsRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -124,7 +106,6 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/accessibility': typeof AccessibilityRoute
   '/auction-alerts': typeof AuctionAlertsRoute
-  '/auctions': typeof AuctionsRouteWithChildren
   '/categories': typeof CategoriesRouteWithChildren
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
@@ -134,9 +115,7 @@ export interface FileRoutesByFullPath {
   '/sell': typeof SellRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
-  '/auctions/$slug': typeof AuctionsSlugRoute
   '/categories/$slug': typeof CategoriesSlugRoute
-  '/lots/$slug': typeof LotsSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
 }
 export interface FileRoutesByTo {
@@ -144,7 +123,6 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/accessibility': typeof AccessibilityRoute
   '/auction-alerts': typeof AuctionAlertsRoute
-  '/auctions': typeof AuctionsRouteWithChildren
   '/categories': typeof CategoriesRouteWithChildren
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
@@ -154,9 +132,7 @@ export interface FileRoutesByTo {
   '/sell': typeof SellRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
-  '/auctions/$slug': typeof AuctionsSlugRoute
   '/categories/$slug': typeof CategoriesSlugRoute
-  '/lots/$slug': typeof LotsSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
 }
 export interface FileRoutesById {
@@ -165,7 +141,6 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/accessibility': typeof AccessibilityRoute
   '/auction-alerts': typeof AuctionAlertsRoute
-  '/auctions': typeof AuctionsRouteWithChildren
   '/categories': typeof CategoriesRouteWithChildren
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
@@ -175,9 +150,7 @@ export interface FileRoutesById {
   '/sell': typeof SellRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
-  '/auctions/$slug': typeof AuctionsSlugRoute
   '/categories/$slug': typeof CategoriesSlugRoute
-  '/lots/$slug': typeof LotsSlugRoute
   '/resources/$slug': typeof ResourcesSlugRoute
 }
 export interface FileRouteTypes {
@@ -187,7 +160,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/accessibility'
     | '/auction-alerts'
-    | '/auctions'
     | '/categories'
     | '/contact'
     | '/faq'
@@ -197,9 +169,7 @@ export interface FileRouteTypes {
     | '/sell'
     | '/sitemap.xml'
     | '/terms'
-    | '/auctions/$slug'
     | '/categories/$slug'
-    | '/lots/$slug'
     | '/resources/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -207,7 +177,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/accessibility'
     | '/auction-alerts'
-    | '/auctions'
     | '/categories'
     | '/contact'
     | '/faq'
@@ -217,9 +186,7 @@ export interface FileRouteTypes {
     | '/sell'
     | '/sitemap.xml'
     | '/terms'
-    | '/auctions/$slug'
     | '/categories/$slug'
-    | '/lots/$slug'
     | '/resources/$slug'
   id:
     | '__root__'
@@ -227,7 +194,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/accessibility'
     | '/auction-alerts'
-    | '/auctions'
     | '/categories'
     | '/contact'
     | '/faq'
@@ -237,9 +203,7 @@ export interface FileRouteTypes {
     | '/sell'
     | '/sitemap.xml'
     | '/terms'
-    | '/auctions/$slug'
     | '/categories/$slug'
-    | '/lots/$slug'
     | '/resources/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -248,7 +212,6 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AccessibilityRoute: typeof AccessibilityRoute
   AuctionAlertsRoute: typeof AuctionAlertsRoute
-  AuctionsRoute: typeof AuctionsRouteWithChildren
   CategoriesRoute: typeof CategoriesRouteWithChildren
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
@@ -258,7 +221,6 @@ export interface RootRouteChildren {
   SellRoute: typeof SellRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
-  LotsSlugRoute: typeof LotsSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -326,13 +288,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategoriesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/auctions': {
-      id: '/auctions'
-      path: '/auctions'
-      fullPath: '/auctions'
-      preLoaderRoute: typeof AuctionsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/auction-alerts': {
       id: '/auction-alerts'
       path: '/auction-alerts'
@@ -368,13 +323,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesSlugRouteImport
       parentRoute: typeof ResourcesRoute
     }
-    '/lots/$slug': {
-      id: '/lots/$slug'
-      path: '/lots/$slug'
-      fullPath: '/lots/$slug'
-      preLoaderRoute: typeof LotsSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/categories/$slug': {
       id: '/categories/$slug'
       path: '/$slug'
@@ -382,27 +330,8 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategoriesSlugRouteImport
       parentRoute: typeof CategoriesRoute
     }
-    '/auctions/$slug': {
-      id: '/auctions/$slug'
-      path: '/$slug'
-      fullPath: '/auctions/$slug'
-      preLoaderRoute: typeof AuctionsSlugRouteImport
-      parentRoute: typeof AuctionsRoute
-    }
   }
 }
-
-interface AuctionsRouteChildren {
-  AuctionsSlugRoute: typeof AuctionsSlugRoute
-}
-
-const AuctionsRouteChildren: AuctionsRouteChildren = {
-  AuctionsSlugRoute: AuctionsSlugRoute,
-}
-
-const AuctionsRouteWithChildren = AuctionsRoute._addFileChildren(
-  AuctionsRouteChildren,
-)
 
 interface CategoriesRouteChildren {
   CategoriesSlugRoute: typeof CategoriesSlugRoute
@@ -433,7 +362,6 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AccessibilityRoute: AccessibilityRoute,
   AuctionAlertsRoute: AuctionAlertsRoute,
-  AuctionsRoute: AuctionsRouteWithChildren,
   CategoriesRoute: CategoriesRouteWithChildren,
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
@@ -443,8 +371,17 @@ const rootRouteChildren: RootRouteChildren = {
   SellRoute: SellRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
-  LotsSlugRoute: LotsSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

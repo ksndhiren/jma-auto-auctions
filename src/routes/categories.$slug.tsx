@@ -15,11 +15,10 @@ export const Route = createFileRoute("/categories/$slug")({
   head: ({ loaderData }) => ({
     meta: loaderData?.category
       ? [
-          { title: `${loaderData.category.name} Auctions | Aucto Auctions` },
+          { title: `${loaderData.category.name} Auctions | JMA Auto Auctions` },
           { name: "description", content: loaderData.category.description },
-          { property: "og:image", content: loaderData.category.image },
         ]
-      : [{ title: "Category | Aucto Auctions" }],
+      : [{ title: "Category | JMA Auto Auctions" }],
   }),
   notFoundComponent: () => (
     <SiteShell><Section><h1 className="font-display text-3xl">Category not found</h1><Cta to="/categories" variant="dark" className="mt-4">All categories</Cta></Section></SiteShell>
@@ -38,7 +37,7 @@ function CategoryDetail() {
   return (
     <SiteShell>
       <section className="relative overflow-hidden border-b border-border bg-ink text-white">
-        <img src={category.image} alt="" className="absolute inset-0 h-full w-full object-cover opacity-30" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(242,169,0,0.18),transparent_28%),linear-gradient(135deg,rgba(255,255,255,0.04),transparent_35%)]" />
         <div className="container-x relative py-16 md:py-24">
           <Link to="/categories" className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/60 hover:text-gold">‹ All categories</Link>
           <h1 className="mt-4 font-display text-4xl text-white md:text-6xl">{category.name}</h1>

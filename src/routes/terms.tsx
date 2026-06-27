@@ -3,7 +3,7 @@ import { SiteShell } from "@/components/layout/SiteShell";
 import { Section, Eyebrow } from "@/components/layout/Section";
 
 export const Route = createFileRoute("/terms")({
-  head: () => ({ meta: [{ title: "Terms & Conditions | Aucto Auctions" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ title: "Terms & Conditions | JMA Auto Auctions" }, { name: "robots", content: "noindex" }] }),
   component: () => (
     <SiteShell>
       <Section size="md">

@@ -6,15 +6,13 @@ import { ProcessTimeline } from "@/components/ui/process-timeline";
 import { SellerEnquiryForm } from "@/components/forms/SellerEnquiryForm";
 import { Cta } from "@/components/ui/cta";
 import { siteConfig } from "@/config/site";
-import sellInspection from "@/assets/sell-inspection.jpg";
 
 export const Route = createFileRoute("/sell")({
   head: () => ({
     meta: [
-      { title: "Sell Your Assets at Auction | Aucto Auctions" },
-      { name: "description", content: "Request a consultation to sell heavy equipment, trucks, industrial machinery, or complete plant assets at auction." },
-      { property: "og:title", content: "Sell With Aucto Auctions" },
-      { property: "og:image", content: sellInspection },
+      { title: "Sell Vehicles | JMA Auto Auctions" },
+      { name: "description", content: "Request a consultation to consign fleet vehicles, pickups, SUVs, repossessions, and commercial units through Jeff Martin Auctioneers." },
+      { property: "og:title", content: "Sell Vehicles | JMA Auto Auctions" },
     ],
   }),
   component: SellPage,
@@ -32,18 +30,17 @@ const STEPS = [
 function SellPage() {
   return (
     <SiteShell>
-      {/* Hero */}
       <section className="relative overflow-hidden border-b border-border bg-ink text-white">
-        <img src={sellInspection} alt="JMA team inspecting equipment with a contractor" className="absolute inset-0 h-full w-full object-cover opacity-30" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(242,169,0,0.18),transparent_28%),linear-gradient(135deg,rgba(255,255,255,0.04),transparent_35%)]" />
         <div className="container-x relative grid gap-10 py-20 md:py-28 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <Eyebrow tone="light">For Sellers</Eyebrow>
             <h1 className="mt-4 font-display text-4xl text-white md:text-6xl lg:text-7xl">
-              Sell your assets with <span className="text-gold">proven auction expertise.</span>
+              Sell your vehicles with <span className="text-gold">proven auction expertise.</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg text-white/80">
-              From a single piece of equipment to a complete plant liquidation, our auction team
-              structures, markets, and manages the sale so you can focus on what's next.
+              From a handful of fleet pickups to larger seller groups, our auction team structures,
+              markets, and manages the sale so you can move inventory efficiently.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Cta href="#enquiry" variant="gold" size="lg">Request a Consultation</Cta>
@@ -66,7 +63,7 @@ function SellPage() {
               {[
                 { t: "Speed", d: "Move assets in a defined window — not over months on the market." },
                 { t: "Transparent pricing", d: "Live competitive bidding sets the market price on sale day." },
-                { t: "Bidder reach", d: "Marketing to a curated audience of qualified buyers nationwide." },
+                { t: "Bidder reach", d: "Marketing to a curated audience of qualified auto and fleet buyers nationwide." },
                 { t: "Single point of contact", d: "Specialist team manages everything from consultation to settlement." },
               ].map((b) => (
                 <li key={b.t} className="border-l-2 border-gold pl-4">

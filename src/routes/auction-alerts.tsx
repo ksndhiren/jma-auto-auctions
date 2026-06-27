@@ -6,7 +6,7 @@ import { AuctionAlertForm } from "@/components/forms/AuctionAlertForm";
 export const Route = createFileRoute("/auction-alerts")({
   head: () => ({
     meta: [
-      { title: "Auction Alerts | Aucto Auctions" },
+      { title: "Auction Alerts | JMA Auto Auctions" },
       { name: "description", content: "Subscribe to receive notifications when new auctions matching your interests are scheduled." },
     ],
   }),

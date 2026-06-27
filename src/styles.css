@@ -5,14 +5,14 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-display: "Archivo Black", "Helvetica Neue", sans-serif;
-  --font-sans: "Inter", "Helvetica Neue", sans-serif;
+  --font-display: "Archivo Black", "League Spartan", "Arial Black", sans-serif;
+  --font-sans: "Inter", "Arial", sans-serif;
 
-  --radius-sm: 2px;
-  --radius-md: 3px;
-  --radius-lg: 4px;
-  --radius-xl: 6px;
-  --radius-2xl: 8px;
+  --radius-sm: 0px;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+  --radius-xl: 2px;
+  --radius-2xl: 2px;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -44,31 +44,31 @@
 }
 
 :root {
-  --background: oklch(1 0 0);                  /* #FFFFFF */
-  --foreground: oklch(0.18 0 0);               /* near black for body */
-  --surface: oklch(0.98 0.004 80);             /* warm bone */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.12 0 0);
+  --surface: oklch(0.98 0.004 80);
   --bone: oklch(0.965 0.006 80);
-  --ink: oklch(0 0 0);                         /* #000000 */
+  --ink: oklch(0.08 0 0);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0 0);
+  --card-foreground: oklch(0.12 0 0);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0 0);
-  --primary: oklch(0 0 0);                     /* black */
+  --popover-foreground: oklch(0.12 0 0);
+  --primary: oklch(0.12 0 0);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.96 0.004 80);
-  --secondary-foreground: oklch(0.18 0 0);
+  --secondary: oklch(0.95 0 0);
+  --secondary-foreground: oklch(0.12 0 0);
   --muted: oklch(0.94 0.004 80);
-  --muted-foreground: oklch(0.45 0.005 80);
+  --muted-foreground: oklch(0.42 0 0);
   --accent: oklch(0.96 0.004 80);
-  --accent-foreground: oklch(0.18 0 0);
-  --gold: oklch(0.78 0.16 75);                 /* #F2A900 JMA Gold */
-  --gold-dark: oklch(0.68 0.155 65);
-  --gold-foreground: oklch(0 0 0);
+  --accent-foreground: oklch(0.12 0 0);
+  --gold: oklch(0.78 0.16 78);
+  --gold-dark: oklch(0.71 0.15 74);
+  --gold-foreground: oklch(0.12 0 0);
   --destructive: oklch(0.55 0.22 27);
   --destructive-foreground: oklch(1 0 0);
   --success: oklch(0.62 0.15 145);
-  --border: oklch(0.9 0.003 80);               /* light grey */
-  --border-strong: oklch(0.82 0.005 80);       /* #D1D3D4 */
+  --border: oklch(0.88 0 0);
+  --border-strong: oklch(0.82 0 0);
   --input: oklch(0.9 0.003 80);
   --ring: oklch(0.78 0.16 75);
 }
@@ -103,18 +103,22 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
   }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
+    overflow-x: hidden;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     font-weight: 900;
-    letter-spacing: -0.01em;
-    line-height: 1.05;
+    letter-spacing: 0.01em;
+    line-height: 1.02;
+    text-transform: uppercase;
   }
   .font-display { font-family: var(--font-display); }
   ::selection { background: var(--gold); color: #000; }
@@ -122,8 +126,8 @@
 
 @utility eyebrow {
   font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-weight: 700;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--muted-foreground);
 }
@@ -144,10 +148,10 @@
 @utility container-x {
   width: 100%;
   margin-inline: auto;
-  padding-inline: 1.25rem;
-  max-width: 1280px;
+  padding-inline: 1.5rem;
+  max-width: 1240px;
   @media (min-width: 768px) { padding-inline: 2rem; }
-  @media (min-width: 1280px) { padding-inline: 2.5rem; }
+  @media (min-width: 1280px) { padding-inline: 2rem; }
 }
 
 @utility chev-after {
@@ -158,6 +162,10 @@
     transition: transform 0.2s ease;
   }
   &:hover::after { transform: translateX(4px); }
+}
+
+@utility clip-chev-r {
+  clip-path: polygon(0 0, calc(100% - 32px) 0, 100% 50%, calc(100% - 32px) 100%, 0 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {

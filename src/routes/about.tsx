@@ -2,14 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { Section, SectionHeader, Eyebrow } from "@/components/layout/Section";
 import { Cta } from "@/components/ui/cta";
-import aboutAuction from "@/assets/about-auction.jpg";
 import { siteConfig } from "@/config/site";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Aucto Auctions — Powered by Jeff Martin Auctioneers" },
-      { name: "description", content: "Aucto Auctions is the specialist auction platform of Jeff Martin Auctioneers, bringing decades of expertise to equipment, transport, industrial, and agricultural sales." },
+      { title: "About JMA Auto Auctions" },
+      { name: "description", content: "JMA Auto Auctions is the auto-focused lead generation and bidder-discovery experience powered by Jeff Martin Auctioneers." },
     ],
   }),
   component: AboutPage,
@@ -22,35 +21,31 @@ function AboutPage() {
         <div className="container-x max-w-4xl">
           <Eyebrow>About</Eyebrow>
           <h1 className="mt-4 font-display text-4xl text-ink md:text-6xl">
-            Aucto Auctions, operated by {siteConfig.parent.name}.
+            JMA Auto Auctions, operated by {siteConfig.parent.name}.
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-            Aucto Auctions is the specialist auction platform of {siteConfig.parent.name}. We
-            combine decades of traditional auction craft with modern online bidding to deliver
-            professionally managed sales for buyers and sellers across the country.
+            JMA Auto Auctions is the auto-focused discovery layer for {siteConfig.parent.name}. We
+            help buyers preview upcoming auto events and vehicle inventory, then route them into
+            the main bidding platform when they are ready to act.
           </p>
         </div>
       </section>
 
       <Section size="md">
-        <div className="grid gap-10 lg:grid-cols-2">
-          <img src={aboutAuction} alt="Auctioneer addressing bidders at a live sale" className="aspect-[4/3] w-full object-cover" />
-          <div>
+        <div className="border border-black/10 bg-bone p-8 md:p-12">
             <Eyebrow>Our Approach</Eyebrow>
             <h2 className="mt-4 font-display text-3xl text-ink md:text-4xl">
-              Auction expertise focused on the assets you operate.
+              Auction expertise focused on the vehicles buyers are actually searching for.
             </h2>
             <p className="mt-5 text-muted-foreground">
-              Our auction teams specialize in the asset categories we sell — construction
-              equipment, trucks and trailers, industrial machinery, and agricultural equipment.
-              That category depth shows in accurate descriptions, targeted marketing, and bidder
-              audiences that turn into sale prices.
+              This site is intentionally narrow: auto auctions, featured inventory, bidder
+              education, and stronger handoff to the main JMA website. The experience is built to
+              reduce friction, increase trust, and convert interested users into approved bidders.
             </p>
             <p className="mt-4 text-muted-foreground">
-              From single-asset sales to multi-state plant liquidations, we structure each
-              auction around the seller's goals and the buyers most likely to act.
+              Instead of duplicating the full auction platform, we focus on surfacing the right
+              inventory and the right next step at the right time.
             </p>
-          </div>
         </div>
       </Section>
 
@@ -80,7 +75,7 @@ function AboutPage() {
           </div>
           <div className="flex flex-wrap gap-3 lg:col-span-4 lg:justify-end">
             <Cta to="/contact" variant="gold">Contact Us</Cta>
-            <Cta to="/sell" variant="outline-light">Sell Assets</Cta>
+            <Cta to="/sell" variant="outline-light">Sell Vehicles</Cta>
           </div>
         </div>
       </Section>

@@ -8,7 +8,7 @@ import { siteConfig } from "@/config/site";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Aucto Auctions" },
+      { title: "Contact JMA Auto Auctions" },
       { name: "description", content: "Speak with our auction specialists about buying, selling, or auction-specific support." },
     ],
   }),

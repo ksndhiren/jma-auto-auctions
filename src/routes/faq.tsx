@@ -8,7 +8,7 @@ import { faqs } from "@/data/mock";
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "Frequently Asked Questions | Aucto Auctions" },
+      { title: "Frequently Asked Questions | JMA Auto Auctions" },
       { name: "description", content: "Answers to buyer and seller questions about registration, bidding, payments, inspections, and selling assets at auction." },
     ],
   }),

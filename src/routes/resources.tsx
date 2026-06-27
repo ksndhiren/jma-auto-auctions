@@ -7,7 +7,7 @@ import { articles } from "@/data/mock";
 export const Route = createFileRoute("/resources")({
   head: () => ({
     meta: [
-      { title: "Resources & Guides | Aucto Auctions" },
+      { title: "Resources & Guides | JMA Auto Auctions" },
       { name: "description", content: "Articles for buyers and sellers on auction registration, bidding, asset preparation, and more." },
     ],
   }),

@@ -101,7 +101,7 @@ export function AuctionAlertForm() {
           className="mt-1 size-4 accent-gold"
         />
         <span className="text-muted-foreground">
-          I agree to receive auction alerts from Aucto Auctions. Unsubscribe anytime.
+          I agree to receive auction alerts from JMA Auto Auctions. Unsubscribe anytime.
         </span>
       </label>
       <Cta size="md" type="submit" disabled={status === "loading" || !data.consent}>

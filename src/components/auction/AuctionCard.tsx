@@ -1,8 +1,7 @@
-import { Link } from "@tanstack/react-router";
 import { Calendar, MapPin, Package } from "lucide-react";
 import type { Auction } from "@/data/types";
-import { StatusBadge } from "./StatusBadge";
 import { Countdown } from "./Countdown";
+import { StatusBadge } from "./StatusBadge";
 
 interface Props {
   auction: Auction;
@@ -15,65 +14,75 @@ export function AuctionCard({ auction, variant = "default" }: Props) {
     day: "numeric",
     year: "numeric",
   });
+
   return (
-    <Link
-      to="/auctions/$slug"
-      params={{ slug: auction.slug }}
-      className="group relative flex flex-col overflow-hidden border border-border bg-background transition-all hover:border-ink hover:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.25)]"
+    <a
+      href={auction.externalUrl ?? "https://www.jeffmartinauctioneers.com/auctions"}
+      className="group flex h-full flex-col overflow-hidden border border-black/10 bg-white transition-all hover:border-black hover:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.2)]"
     >
-      <div className="relative aspect-[16/10] overflow-hidden bg-muted">
-        <img
-          src={auction.image}
-          alt={auction.title}
-          loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <div className="absolute left-3 top-3 flex gap-2">
+      {auction.image && (
+        <div className="aspect-[16/10] overflow-hidden border-b border-black/10 bg-black">
+          <img
+            src={auction.image}
+            alt={auction.title}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+      )}
+      <div className="flex flex-1 flex-col p-4">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+          {auction.eyebrow && (
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-gold-dark">
+              {auction.eyebrow}
+            </p>
+          )}
+          <h3 className="mt-2 line-clamp-2 font-display text-lg leading-tight text-ink group-hover:text-gold-dark">
+            {auction.title}
+          </h3>
+          </div>
           <StatusBadge status={auction.status} />
         </div>
-        <div className="absolute bottom-3 right-3 bg-ink/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white">
-          {auction.type}
-        </div>
-      </div>
-      <div className="flex flex-1 flex-col p-5">
-        <h3 className="font-display text-lg leading-tight text-ink group-hover:text-gold-dark">
-          {auction.title}
-        </h3>
+
         {variant !== "compact" && (
-          <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">{auction.description}</p>
+          <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+            {auction.description}
+          </p>
         )}
-        <dl className="mt-4 grid grid-cols-3 gap-3 border-t border-border pt-4 text-[11px]">
-          <div className="flex flex-col">
-            <dt className="flex items-center gap-1 text-muted-foreground">
-              <Calendar className="size-3 text-gold" /> Date
-            </dt>
-            <dd className="mt-1 font-semibold text-ink">{date}</dd>
+
+        <dl className="mt-4 grid grid-cols-1 gap-3 text-[11px]">
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Calendar className="size-3 text-gold" />
+            <span className="font-semibold text-ink">{date}</span>
           </div>
-          <div className="flex flex-col">
-            <dt className="flex items-center gap-1 text-muted-foreground">
-              <MapPin className="size-3 text-gold" /> Location
-            </dt>
-            <dd className="mt-1 truncate font-semibold text-ink">{auction.location}</dd>
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <MapPin className="size-3 text-gold" />
+            <span className="font-semibold text-ink">{auction.location}</span>
           </div>
-          <div className="flex flex-col">
-            <dt className="flex items-center gap-1 text-muted-foreground">
-              <Package className="size-3 text-gold" /> Lots
-            </dt>
-            <dd className="mt-1 font-semibold text-ink">{auction.lotCount}</dd>
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Package className="size-3 text-gold" />
+            <span className="font-semibold text-ink">{auction.lotCount} lots</span>
           </div>
         </dl>
-        {auction.status !== "completed" && (
-          <div className="mt-4 flex items-center justify-between border-t border-border pt-4">
-            <span className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+
+        <div className="mt-auto flex items-center justify-between border-t border-black/10 pt-4">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
               {auction.status === "upcoming" ? "Begins in" : "Closes in"}
-            </span>
-            <Countdown
-              to={auction.status === "upcoming" ? auction.startsAt : auction.endsAt}
-              compact
-            />
+            </p>
+            <div className="mt-1">
+              <Countdown
+                to={auction.status === "upcoming" ? auction.startsAt : auction.endsAt}
+                compact
+              />
+            </div>
           </div>
-        )}
+          <span className="text-xs font-semibold uppercase tracking-[0.12em] text-ink transition-colors group-hover:text-gold-dark">
+            View on JMA ›
+          </span>
+        </div>
       </div>
-    </Link>
+    </a>
   );
 }

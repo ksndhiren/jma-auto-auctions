@@ -13,8 +13,8 @@ export function SiteFooter() {
           <div className="lg:col-span-5">
             <BrandLockup variant="light" />
             <p className="mt-6 max-w-md text-sm leading-relaxed text-white/70">
-              {siteConfig.description} Aucto Auctions is operated by {siteConfig.parent.name},
-              bringing decades of auction expertise to every sale.
+              {siteConfig.description} This site is the preview and conversion layer; bidder login
+              and live bidding happen on the main {siteConfig.parent.name} platform.
             </p>
             <div className="mt-8">
               <p className="eyebrow text-white/60">Auction alerts</p>
@@ -31,9 +31,9 @@ export function SiteFooter() {
             <div>
               <p className="eyebrow text-white/60">Buyers</p>
               <ul className="mt-4 space-y-3 text-sm">
-                <FooterLink to="/auctions">All Auctions</FooterLink>
-                <FooterLink to="/categories">Categories</FooterLink>
-                <FooterLink to="/how-to-buy">How to Buy</FooterLink>
+                <FooterAnchor href={siteConfig.platform.auctionsUrl}>All Auctions</FooterAnchor>
+                <FooterAnchor href={siteConfig.platform.lotsUrl}>Featured Inventory</FooterAnchor>
+                <FooterLink to="/how-to-buy">How to Bid</FooterLink>
                 <FooterLink to="/auction-alerts">Auction Alerts</FooterLink>
                 <FooterLink to="/faq">FAQ</FooterLink>
               </ul>
@@ -41,12 +41,12 @@ export function SiteFooter() {
             <div>
               <p className="eyebrow text-white/60">Sellers</p>
               <ul className="mt-4 space-y-3 text-sm">
-                <FooterLink to="/sell">Sell Your Assets</FooterLink>
+                <FooterLink to="/sell">Sell Vehicles</FooterLink>
                 <FooterLink to="/sell">Request Consultation</FooterLink>
                 <FooterLink to="/about">About JMA</FooterLink>
                 <FooterLink to="/resources">Resources</FooterLink>
               </ul>
-              <p className="eyebrow mt-8 text-white/60">Categories</p>
+              <p className="eyebrow mt-8 text-white/60">Vehicle Types</p>
               <ul className="mt-4 space-y-3 text-sm">
                 {categories.slice(0, 4).map((c) => (
                   <FooterLink key={c.slug} to={`/categories/${c.slug}`}>
@@ -79,6 +79,12 @@ export function SiteFooter() {
                   </span>
                 </li>
               </ul>
+              <a
+                href={siteConfig.platform.auctionsUrl}
+                className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-gold hover:text-white"
+              >
+                Register on main JMA site
+              </a>
               <div className="mt-6 flex gap-3">
                 <SocialIcon href={siteConfig.social.facebook} label="Facebook">
                   <Facebook className="size-4" />
@@ -119,6 +125,16 @@ function FooterLink({ to, children }: { to: string; children: React.ReactNode })
       <Link to={to} className="text-white/70 transition-colors hover:text-gold">
         {children}
       </Link>
+    </li>
+  );
+}
+
+function FooterAnchor({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <li>
+      <a href={href} className="text-white/70 transition-colors hover:text-gold">
+        {children}
+      </a>
     </li>
   );
 }

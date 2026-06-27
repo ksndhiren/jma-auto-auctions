@@ -13,11 +13,11 @@ export const Route = createFileRoute("/resources/$slug")({
   head: ({ loaderData }) => ({
     meta: loaderData?.article
       ? [
-          { title: `${loaderData.article.title} | Aucto Auctions` },
+          { title: `${loaderData.article.title} | JMA Auto Auctions` },
           { name: "description", content: loaderData.article.excerpt },
           { property: "og:title", content: loaderData.article.title },
         ]
-      : [{ title: "Article | Aucto Auctions" }],
+      : [{ title: "Article | JMA Auto Auctions" }],
   }),
   notFoundComponent: () => (
     <SiteShell><Section><h1 className="font-display text-3xl">Article not found</h1><Cta to="/resources" variant="dark" className="mt-4">All resources</Cta></Section></SiteShell>

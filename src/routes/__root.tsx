@@ -76,18 +76,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Aucto Auctions — Specialist Equipment & Asset Auctions" },
+      { title: "JMA Auto Auctions | Powered by Jeff Martin Auctioneers" },
       {
         name: "description",
         content:
-          "Aucto Auctions connects motivated buyers with quality assets through professionally managed auctions, powered by Jeff Martin Auctioneers.",
+          "Preview upcoming auto auctions and vehicle inventory, then register and bid on the main Jeff Martin Auctioneers platform.",
       },
       { name: "author", content: "Jeff Martin Auctioneers" },
       { name: "theme-color", content: "#000000" },
-      { property: "og:title", content: "Aucto Auctions" },
+      { property: "og:title", content: "JMA Auto Auctions" },
       {
         property: "og:description",
-        content: "Specialist equipment and asset auctions powered by Jeff Martin Auctioneers.",
+        content: "A conversion-focused auto auction discovery site powered by Jeff Martin Auctioneers.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

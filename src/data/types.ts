@@ -11,6 +11,7 @@ export interface Auction {
   id: string;
   slug: string;
   title: string;
+  eyebrow?: string;
   type: AuctionType;
   status: AuctionStatus;
   startsAt: string; // ISO
@@ -21,6 +22,7 @@ export interface Auction {
   image: string;
   categories: string[]; // category slugs
   lotCount: number;
+  externalUrl?: string;
   isDemo?: boolean;
 }
 
@@ -41,6 +43,10 @@ export interface Lot {
   description: string;
   specs?: { label: string; value: string }[];
   currentBid?: number;
+  openingBid?: number;
+  closesAt?: string;
+  auctionName?: string;
+  externalUrl?: string;
   status: "upcoming" | "open" | "closed";
   image: string;
   gallery?: string[];

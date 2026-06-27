@@ -1,4 +1,3 @@
-import { Link } from "@tanstack/react-router";
 import { MapPin } from "lucide-react";
 import type { Lot } from "@/data/types";
 
@@ -7,58 +6,76 @@ interface Props {
 }
 
 export function LotCard({ lot }: Props) {
+  const closeDate = lot.closesAt
+    ? new Date(lot.closesAt).toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      })
+    : null;
+
   return (
-    <Link
-      to="/lots/$slug"
-      params={{ slug: lot.slug }}
-      className="group flex flex-col overflow-hidden border border-border bg-background transition-all hover:border-ink"
+    <a
+      href={lot.externalUrl ?? "https://www.jeffmartinauctioneers.com/all-auction-lots"}
+      className="group flex h-full flex-col overflow-hidden border border-black/10 bg-white transition-all hover:border-black hover:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.2)]"
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-muted">
-        <img
-          src={lot.image}
-          alt={lot.title}
-          loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <span className="absolute left-3 top-3 bg-ink px-2 py-1 font-display text-[10px] tracking-wider text-white">
-          {lot.lotNumber}
-        </span>
-        {lot.isDemo && (
-          <span className="absolute right-3 top-3 bg-gold/90 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.14em] text-black">
-            Sample
-          </span>
-        )}
-      </div>
+      {lot.image && (
+        <div className="aspect-[16/11] overflow-hidden border-b border-black/10 bg-[#f5f1e8] p-2">
+          <img
+            src={lot.image}
+            alt={lot.title}
+            loading="lazy"
+            className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        </div>
+      )}
       <div className="flex flex-1 flex-col p-4">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-dark">
-          {lot.manufacturer} {lot.year ? `· ${lot.year}` : ""}
-        </p>
-        <h3 className="mt-1.5 line-clamp-2 font-display text-base leading-snug text-ink">
-          {lot.title}
-        </h3>
+        <div className="flex items-start justify-between gap-4">
+          <div>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-gold-dark">
+            {lot.lotNumber}
+          </p>
+          <h3 className="mt-2 line-clamp-2 font-display text-lg leading-tight text-ink group-hover:text-gold-dark">
+            {lot.title}
+          </h3>
+          </div>
+          <span className="border border-black/10 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/60">
+            {lot.status}
+          </span>
+        </div>
+
+        {lot.auctionName && (
+          <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-black/45">
+            {lot.auctionName}
+          </p>
+        )}
         {lot.location && (
           <p className="mt-2 flex items-center gap-1 text-xs text-muted-foreground">
             <MapPin className="size-3 text-gold" /> {lot.location}
           </p>
         )}
-        <div className="mt-auto flex items-end justify-between border-t border-border pt-3">
-          <div>
+        {closeDate && (
+          <p className="mt-3 text-xs font-semibold uppercase tracking-[0.12em] text-black/60">
+            Auction Closes {closeDate}
+          </p>
+        )}
+
+        <div className="mt-auto grid grid-cols-2 gap-3 border-t border-black/10 pt-4">
+          <div className="border-l-2 border-gold pl-3">
             <p className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
-              {lot.status === "open" ? "Current Bid" : lot.status === "upcoming" ? "Opening Soon" : "Final"}
+              {lot.currentBid !== undefined ? "Current Bid" : "Opening Bid"}
             </p>
-            {lot.currentBid !== undefined ? (
-              <p className="font-display text-lg text-ink">
-                ${lot.currentBid.toLocaleString()}
-              </p>
-            ) : (
-              <p className="font-display text-sm text-muted-foreground">—</p>
-            )}
+            <p className="mt-1 font-display text-xl text-ink">
+              ${(lot.currentBid ?? lot.openingBid ?? 0).toLocaleString()}
+            </p>
           </div>
-          <span className="text-xs font-semibold uppercase tracking-[0.12em] text-ink transition-colors group-hover:text-gold-dark">
-            View ›
-          </span>
+          <div className="flex items-end justify-end">
+            <span className="text-xs font-semibold uppercase tracking-[0.12em] text-ink transition-colors group-hover:text-gold-dark">
+              View on JMA ›
+            </span>
+          </div>
         </div>
       </div>
-    </Link>
+    </a>
   );
 }

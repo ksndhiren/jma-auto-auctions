@@ -6,11 +6,26 @@ interface Props {
 }
 
 export function Countdown({ to, compact }: Props) {
-  const [now, setNow] = useState(() => Date.now());
+  const [now, setNow] = useState<number | null>(null);
+
   useEffect(() => {
+    setNow(Date.now());
     const id = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(id);
   }, []);
+
+  if (now === null) {
+    return compact ? (
+      <span className="font-display text-sm tracking-wider tabular-nums text-ink">--</span>
+    ) : (
+      <div className="flex items-center gap-2">
+        <Unit value={0} label="Days" />
+        <Unit value={0} label="Hrs" />
+        <Unit value={0} label="Min" />
+        <Unit value={0} label="Sec" />
+      </div>
+    );
+  }
 
   const ms = Math.max(0, new Date(to).getTime() - now);
   const d = Math.floor(ms / 86_400_000);

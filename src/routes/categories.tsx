@@ -7,7 +7,7 @@ import { categories } from "@/data/mock";
 export const Route = createFileRoute("/categories")({
   head: () => ({
     meta: [
-      { title: "Categories — Browse Auction Inventory | Aucto Auctions" },
+      { title: "Categories | JMA Auto Auctions" },
       { name: "description", content: "Browse auctions by category — construction equipment, trucks and trailers, industrial assets, and agricultural equipment." },
     ],
   }),

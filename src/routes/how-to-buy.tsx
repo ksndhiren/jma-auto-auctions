@@ -4,14 +4,15 @@ import { Section, SectionHeader, Eyebrow } from "@/components/layout/Section";
 import { ProcessTimeline } from "@/components/ui/process-timeline";
 import { FAQAccordion } from "@/components/ui/faq-accordion";
 import { Cta } from "@/components/ui/cta";
+import { siteConfig } from "@/config/site";
 import { faqs } from "@/data/mock";
 
 export const Route = createFileRoute("/how-to-buy")({
   head: () => ({
     meta: [
-      { title: "How to Buy at Auction | Aucto Auctions" },
-      { name: "description", content: "Step-by-step guide to registering, bidding, paying, and collecting at an Aucto auction." },
-      { property: "og:title", content: "How to Buy | Aucto Auctions" },
+      { title: "How to Bid | JMA Auto Auctions" },
+      { name: "description", content: "Step-by-step guide to reviewing inventory, registering, and bidding through Jeff Martin Auctioneers." },
+      { property: "og:title", content: "How to Bid | JMA Auto Auctions" },
     ],
   }),
   component: HowToBuy,
@@ -63,7 +64,7 @@ function HowToBuy() {
             <p className="mt-2 text-white/70">Browse auctions, set alerts, or speak to a specialist.</p>
           </div>
           <div className="flex flex-wrap gap-3 lg:col-span-4 lg:justify-end">
-            <Cta to="/auctions" variant="gold">View Auctions</Cta>
+            <Cta href={siteConfig.platform.auctionsUrl} variant="gold">View Auctions</Cta>
             <Cta to="/auction-alerts" variant="outline-light">Get Alerts</Cta>
           </div>
         </div>
