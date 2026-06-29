@@ -1,152 +1,90 @@
-import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Linkedin, Youtube, Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
 import { BrandLockup } from "@/components/brand/BrandLockup";
-import { NewsletterForm } from "@/components/forms/NewsletterForm";
 import { siteConfig } from "@/config/site";
-import { categories } from "@/data/mock";
+import { FOOTER_MENU } from "@/data/menu";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-ink text-white">
-      <div className="container-x py-16">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <BrandLockup variant="light" />
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-white/70">
-              {siteConfig.description} This site is the preview and conversion layer; bidder login
-              and live bidding happen on the main {siteConfig.parent.name} platform.
-            </p>
-            <div className="mt-8">
-              <p className="eyebrow text-white/60">Auction alerts</p>
-              <p className="mt-2 text-sm text-white/70">
-                Get notified when new auctions go live.
-              </p>
-              <div className="mt-4 max-w-sm">
-                <NewsletterForm variant="dark" />
-              </div>
-            </div>
-          </div>
+    <footer className="border-t border-black/10 bg-white text-ink">
+      <div className="mx-auto w-full max-w-[1520px] px-5 py-10 md:px-8 md:py-12 xl:px-10">
+        <div className="border-b border-black/10 pb-5">
+          <BrandLockup variant="dark" showAttribution={false} />
+        </div>
 
-          <div className="grid gap-8 sm:grid-cols-3 lg:col-span-7">
-            <div>
-              <p className="eyebrow text-white/60">Buyers</p>
-              <ul className="mt-4 space-y-3 text-sm">
-                <FooterAnchor href={siteConfig.platform.auctionsUrl}>All Auctions</FooterAnchor>
-                <FooterAnchor href={siteConfig.platform.lotsUrl}>Featured Inventory</FooterAnchor>
-                <FooterLink to="/how-to-buy">How to Bid</FooterLink>
-                <FooterLink to="/auction-alerts">Auction Alerts</FooterLink>
-                <FooterLink to="/faq">FAQ</FooterLink>
-              </ul>
-            </div>
-            <div>
-              <p className="eyebrow text-white/60">Sellers</p>
-              <ul className="mt-4 space-y-3 text-sm">
-                <FooterLink to="/sell">Sell Vehicles</FooterLink>
-                <FooterLink to="/sell">Request Consultation</FooterLink>
-                <FooterLink to="/about">About JMA</FooterLink>
-                <FooterLink to="/resources">Resources</FooterLink>
-              </ul>
-              <p className="eyebrow mt-8 text-white/60">Vehicle Types</p>
-              <ul className="mt-4 space-y-3 text-sm">
-                {categories.slice(0, 4).map((c) => (
-                  <FooterLink key={c.slug} to={`/categories/${c.slug}`}>
-                    {c.name}
-                  </FooterLink>
+        <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+          {FOOTER_MENU.map((col) => (
+            <div key={col.heading}>
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-ink">
+                {col.heading}
+              </p>
+              <ul className="mt-4 space-y-2 text-sm">
+                {col.items.map((it) => (
+                  <li key={it.label}>
+                    <a
+                      href={it.href}
+                      className="text-black/65 transition-colors hover:text-gold"
+                    >
+                      {it.label}
+                    </a>
+                  </li>
                 ))}
               </ul>
             </div>
-            <div>
-              <p className="eyebrow text-white/60">Contact</p>
-              <ul className="mt-4 space-y-3 text-sm text-white/80">
-                <li className="flex items-start gap-2">
-                  <Phone className="mt-0.5 size-4 shrink-0 text-gold" />
-                  <a href={siteConfig.phoneHref} className="hover:text-gold">
-                    {siteConfig.phone}
-                  </a>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Mail className="mt-0.5 size-4 shrink-0 text-gold" />
-                  <a href={siteConfig.emailHref} className="hover:text-gold">
-                    {siteConfig.email}
-                  </a>
-                </li>
-                <li className="flex items-start gap-2">
-                  <MapPin className="mt-0.5 size-4 shrink-0 text-gold" />
-                  <span>
-                    {siteConfig.address.line1}
-                    <br />
-                    {siteConfig.address.line2}
-                  </span>
-                </li>
-              </ul>
-              <a
-                href={siteConfig.platform.auctionsUrl}
-                className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-gold hover:text-white"
-              >
-                Register on main JMA site
-              </a>
-              <div className="mt-6 flex gap-3">
-                <SocialIcon href={siteConfig.social.facebook} label="Facebook">
-                  <Facebook className="size-4" />
-                </SocialIcon>
-                <SocialIcon href={siteConfig.social.instagram} label="Instagram">
-                  <Instagram className="size-4" />
-                </SocialIcon>
-                <SocialIcon href={siteConfig.social.linkedin} label="LinkedIn">
-                  <Linkedin className="size-4" />
-                </SocialIcon>
-                <SocialIcon href={siteConfig.social.youtube} label="YouTube">
-                  <Youtube className="size-4" />
-                </SocialIcon>
-              </div>
-            </div>
+          ))}
+          <div>
+            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-ink">
+              Contact
+            </p>
+            <ul className="mt-4 space-y-2 text-sm">
+              <li>
+                <a
+                  href="/contact/"
+                  className="text-black/65 transition-colors hover:text-gold"
+                >
+                  Contact
+                </a>
+              </li>
+              <li className="flex items-start gap-2 text-black/65">
+                <Phone className="mt-0.5 size-4 shrink-0 text-gold" />
+                <a href={siteConfig.phoneHref} className="hover:text-gold">
+                  {siteConfig.phone}
+                </a>
+              </li>
+              <li className="flex items-start gap-2 text-black/65">
+                <Mail className="mt-0.5 size-4 shrink-0 text-gold" />
+                <a href={siteConfig.emailHref} className="break-all hover:text-gold">
+                  {siteConfig.email}
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/50 md:flex-row md:items-center md:justify-between">
+        <div className="mt-8 flex justify-end">
+          <a
+            href="https://www.jeffmartinauctioneers.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex flex-col items-end gap-1"
+            aria-label="Jeff Martin Auctioneers"
+          >
+            <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-black/55">
+              Powered by
+            </span>
+            <img
+              src="/jeff-martin.png"
+              alt="Jeff Martin Auctioneers"
+              className="h-9 w-auto object-contain"
+            />
+          </a>
+        </div>
+
+        <div className="mt-6 border-t border-black/10 pt-4 text-xs text-black/55">
           <p>
-            © {new Date().getFullYear()} {siteConfig.name}. Operated by {siteConfig.parent.name}.
-            All rights reserved.
+            © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
-          <div className="flex flex-wrap gap-x-5 gap-y-2">
-            <Link to="/privacy" className="hover:text-gold">Privacy Policy</Link>
-            <Link to="/terms" className="hover:text-gold">Terms & Conditions</Link>
-            <Link to="/accessibility" className="hover:text-gold">Accessibility</Link>
-          </div>
         </div>
       </div>
     </footer>
-  );
-}
-
-function FooterLink({ to, children }: { to: string; children: React.ReactNode }) {
-  return (
-    <li>
-      <Link to={to} className="text-white/70 transition-colors hover:text-gold">
-        {children}
-      </Link>
-    </li>
-  );
-}
-
-function FooterAnchor({ href, children }: { href: string; children: React.ReactNode }) {
-  return (
-    <li>
-      <a href={href} className="text-white/70 transition-colors hover:text-gold">
-        {children}
-      </a>
-    </li>
-  );
-}
-
-function SocialIcon({ href, label, children }: { href: string; label: string; children: React.ReactNode }) {
-  return (
-    <a
-      href={href}
-      aria-label={label}
-      className="grid size-9 place-items-center border border-white/20 text-white/80 transition-colors hover:border-gold hover:text-gold"
-    >
-      {children}
-    </a>
   );
 }

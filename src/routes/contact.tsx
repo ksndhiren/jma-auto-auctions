@@ -18,12 +18,12 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   return (
     <SiteShell>
-      <section className="border-b border-border bg-bone py-14 md:py-20">
+      <section className="border-b border-border bg-black text-white py-14 md:py-20">
         <div className="container-x">
           <Eyebrow>Contact</Eyebrow>
           <h1 className="mt-4 font-display text-4xl text-ink md:text-6xl">Let's talk.</h1>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground">
-            Buyer assistance, seller consultations, auction-specific support — choose the
+            Buyer assistance, seller consultations, auction-specific support. Choose the
             department that fits and we'll get back within one business day.
           </p>
         </div>

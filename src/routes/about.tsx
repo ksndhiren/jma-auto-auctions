@@ -17,7 +17,7 @@ export const Route = createFileRoute("/about")({
 function AboutPage() {
   return (
     <SiteShell>
-      <section className="border-b border-border bg-bone py-14 md:py-24">
+      <section className="border-b border-border bg-black text-white py-14 md:py-24">
         <div className="container-x max-w-4xl">
           <Eyebrow>About</Eyebrow>
           <h1 className="mt-4 font-display text-4xl text-ink md:text-6xl">

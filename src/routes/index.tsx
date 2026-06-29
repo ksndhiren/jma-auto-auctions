@@ -1,17 +1,23 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
+  ArrowRight,
   Award,
-  BadgeCheck,
   Calendar,
   ClipboardList,
+  Gavel,
   Globe2,
+  HelpCircle,
   Mail,
+  Monitor,
   Phone,
+  Search,
   ShieldCheck,
+  Trophy,
+  Truck,
+  UserPlus,
 } from "lucide-react";
 import { AuctionCard } from "@/components/auction/AuctionCard";
 import { LotCard } from "@/components/auction/LotCard";
-import { NewsletterForm } from "@/components/forms/NewsletterForm";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { Cta } from "@/components/ui/cta";
 import { siteConfig } from "@/config/site";
@@ -59,28 +65,27 @@ function HomePage() {
           )}
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.9)_0%,rgba(0,0,0,0.86)_46%,rgba(0,0,0,0.54)_72%,rgba(0,0,0,0.18)_100%),radial-gradient(circle_at_top_left,rgba(242,169,0,0.1),transparent_24%)]" />
         </div>
-        <div className="relative mx-auto grid min-h-[calc(100vh-9rem)] max-w-7xl items-start gap-5 px-6 pb-2 pt-10 md:min-h-[calc(100vh-9.5rem)] md:px-8 md:pb-3 md:pt-12 lg:min-h-[calc(100vh-10rem)] lg:grid-cols-12 lg:gap-7 lg:pb-4 lg:pt-14">
+        <div className="relative mx-auto grid min-h-[calc(100vh-20rem)] max-w-7xl items-start gap-5 px-6 pb-10 pt-28 md:min-h-[calc(100vh-22rem)] md:px-8 md:pb-12 md:pt-32 lg:min-h-[calc(100vh-24rem)] lg:grid-cols-12 lg:gap-7 lg:pb-14 lg:pt-36">
           <div className="lg:col-span-8">
             <div className="mb-2 flex items-center gap-3">
               <span className="h-px w-10 bg-gold" />
-              <span className="eyebrow text-gold">Upcoming Auctions And Inventory</span>
+              <span className="eyebrow text-gold">Jeff Martin Auto Auctions</span>
             </div>
             <h1 className="max-w-5xl font-display text-[2.7rem] uppercase leading-[0.9] tracking-[0.01em] sm:text-[3.25rem] md:text-[3.7rem] lg:text-[3.5rem]">
               <span className="block">Browse Upcoming Auto</span>
-              <span className="block text-gold">Auctions And Featured</span>
-              <span className="block">Vehicle Inventory</span>
+              <span className="block text-gold">Auctions & Featured</span>
+              <span className="block">Inventory</span>
             </h1>
             <p className="mt-2 max-w-[36rem] text-[15px] leading-relaxed text-white/80 md:text-[15px]">
-              Explore upcoming sales, compare featured vehicles, and keep an eye on closing dates
-              before you head to the main bidding platform. This page is built to help you find the
-              right auction quickly and move with confidence when the right vehicle appears.
+              Find upcoming vehicle auctions, browse featured inventory, and register to bid with
+              Jeff Martin Auto Auctions.
             </p>
             <div className="mt-3 flex flex-wrap gap-3">
               <Cta href={siteConfig.platform.auctionsUrl} variant="gold" size="lg">
                 Register to Bid
               </Cta>
-              <Cta href={siteConfig.platform.auctionsUrl} variant="outline-light" size="lg">
-                View Upcoming Auto Auctions
+              <Cta href={siteConfig.platform.lotsUrl} variant="outline-light" size="lg">
+                Browse Inventory
               </Cta>
             </div>
           </div>
@@ -97,39 +102,81 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-black/10 bg-bone">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-6 py-8 md:grid-cols-4 md:gap-10 md:px-8 md:py-10">
+      <section className="border-y border-black/10 bg-white">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-6 py-10 md:grid-cols-4 md:gap-5 md:px-8 md:py-12">
           {[
-            { icon: Award, label: "Trusted JMA Backing" },
-            { icon: BadgeCheck, label: "Upcoming Auto Auctions" },
-            { icon: ClipboardList, label: "Active Vehicle Inventory" },
-            { icon: Globe2, label: "Live Registration Help" },
-          ].map(({ icon: Icon, label }) => (
-            <div key={label} className="flex items-center gap-4">
-              <Icon className="h-7 w-7 shrink-0 text-gold" strokeWidth={1.5} />
-              <span className="text-xs font-bold uppercase tracking-wider text-black/85 md:text-sm">
-                {label}
-              </span>
-            </div>
-          ))}
+            {
+              icon: Calendar,
+              label: "Upcoming Auctions",
+              description: "See what's coming up next",
+              href: siteConfig.platform.auctionsUrl,
+              external: true,
+            },
+            {
+              icon: ClipboardList,
+              label: "Featured Inventory",
+              description: "Vehicles worth a closer look",
+              href: siteConfig.platform.lotsUrl,
+              external: true,
+            },
+            {
+              icon: Truck,
+              label: "Sell Your Vehicle",
+              description: "Consign with confidence",
+              href: "/sell",
+              external: false,
+            },
+            {
+              icon: HelpCircle,
+              label: "Need Help?",
+              description: "Talk to our team",
+              href: "/contact",
+              external: false,
+            },
+          ].map(({ icon: Icon, label, description, href, external }) => {
+            const content = (
+              <>
+                <Icon className="h-8 w-8 shrink-0 text-gold" strokeWidth={1.5} />
+                <div className="mt-4">
+                  <p className="font-display text-lg uppercase tracking-[0.04em] text-black">
+                    {label}
+                  </p>
+                  <p className="mt-1 text-sm text-black/65">{description}</p>
+                </div>
+                <span className="mt-4 inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-[0.18em] text-gold">
+                  Explore <ArrowRight className="h-3 w-3" />
+                </span>
+              </>
+            );
+            const className =
+              "group flex flex-col border border-black/10 bg-bone p-6 transition-colors hover:border-gold";
+            return external ? (
+              <a key={label} href={href} className={className}>
+                {content}
+              </a>
+            ) : (
+              <Link key={label} to={href} className={className}>
+                {content}
+              </Link>
+            );
+          })}
         </div>
       </section>
 
-      <section className="bg-white">
+      <section className="bg-black text-white">
         <div className="mx-auto max-w-7xl px-6 py-20 md:px-8 md:py-28">
-          <div className="flex items-end justify-between gap-6 border-b border-black/10 pb-5">
+          <div className="flex items-end justify-between gap-6 border-b border-white/15 pb-5">
             <div className="max-w-3xl">
-              <span className="eyebrow text-gold">Upcoming Auto Auctions</span>
+              <span className="eyebrow text-gold">Auctions</span>
               <h2 className="mt-4 font-display text-4xl uppercase leading-tight md:text-5xl">
-                <span className="block">Find the next sale</span>
-                <span className="block text-gold whitespace-nowrap">worth watching closely</span>
+                Upcoming Auto <span className="text-gold">Auctions</span>
               </h2>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-black/70">
-                See the date, location, lot count, and timing at a glance. When an auction matches
-                what you are looking for, continue to Jeff Martin Auctioneers for full details and bidding access.
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/75">
+                See location, date, vehicle count, and timing at a glance. When an auction matches
+                what you're after, jump to Jeff Martin Auctioneers for full details and bidding access.
               </p>
             </div>
-            <Cta href={siteConfig.platform.auctionsUrl} variant="dark" size="sm" className="hidden md:inline-flex">
+            <Cta href={siteConfig.platform.auctionsUrl} variant="gold" size="sm" className="hidden md:inline-flex">
               View All Auctions
             </Cta>
           </div>
@@ -142,66 +189,20 @@ function HomePage() {
       </section>
 
       <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-6 pb-20 md:px-8 md:pb-28">
-          <div className="grid items-center gap-10 lg:grid-cols-12">
-            <div className="lg:col-span-12">
-              <span className="eyebrow text-black/50">Why Buyers Start Here</span>
-              <h3 className="mt-3 font-display text-2xl uppercase leading-tight md:text-3xl">
-                See the key details before you <span className="text-gold">commit to bidding.</span>
-              </h3>
-              <p className="mt-5 text-base leading-relaxed text-black/75">
-                You should not have to create an account just to figure out whether a sale is worth
-                your time. This page gives you the essentials first, so you can narrow in on the
-                auctions and vehicles that fit your needs.
-              </p>
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                {[
-                  "Upcoming auction dates and locations",
-                  "Featured vehicles worth a closer look",
-                  "Quick links to registration and bidding",
-                  "Support if you need help before you bid",
-                ].map((item) => (
-                  <div key={item} className="border border-black/10 bg-bone px-4 py-4 text-sm font-medium text-black/75">
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-20 grid gap-8 bg-black p-8 text-white md:p-12 lg:grid-cols-12 lg:p-16">
-            <div className="lg:col-span-3">
-              <span className="eyebrow text-gold">How It Works</span>
-            </div>
-            <div className="lg:col-span-9">
-              <h3 className="font-display text-2xl uppercase leading-tight md:text-3xl">
-                Browse here. Bid there. <span className="text-gold">Simple and fast.</span>
-              </h3>
-              <p className="mt-5 text-base leading-relaxed text-white/80">
-                Use this site to compare upcoming auctions and get a visual feel for the inventory.
-                When you want the full lot page, registration, or bidding access, continue to the
-                main Jeff Martin Auctioneers platform and pick up right where your search left off.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-bone">
         <div className="mx-auto max-w-7xl px-6 py-20 md:px-8 md:py-28">
           <div className="flex items-end justify-between gap-6 border-b border-black/10 pb-5">
             <div className="max-w-3xl">
-              <span className="eyebrow text-gold">Featured Auto Lots</span>
+              <span className="eyebrow text-gold">Inventory</span>
               <h2 className="mt-4 font-display text-4xl uppercase leading-tight md:text-5xl">
-                Featured vehicles worth <span className="text-gold">a closer look.</span>
+                Featured <span className="text-gold">Vehicles</span>
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-black/70">
-                Get a quick read on the vehicles catching attention right now. When one stands out,
-                jump to the full inventory on Jeff Martin Auctioneers for more photos, bidding, and sale details.
+                Browse vehicles drawing attention right now: year, make, model, current bid, and
+                auction date. When one catches your eye, continue to the full lot details.
               </p>
             </div>
             <Cta href={siteConfig.platform.lotsUrl} variant="dark" size="sm" className="hidden md:inline-flex">
-              View All Inventory
+              View Inventory
             </Cta>
           </div>
           <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -212,113 +213,199 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="bg-white">
+      <section className="bg-black text-white">
         <div className="mx-auto max-w-7xl px-6 py-20 md:px-8 md:py-28">
           <div className="max-w-3xl">
-            <span className="eyebrow text-gold">How Registration Works</span>
+            <span className="eyebrow text-gold">How It Works</span>
             <h2 className="mt-4 font-display text-4xl uppercase leading-tight md:text-5xl">
-              A cleaner path from <span className="text-gold">visit to bidder.</span>
+              Four steps from <span className="text-gold">browsing to bidding.</span>
             </h2>
           </div>
           <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {[
-              ["01", "Browse auctions and lots", "Start by exploring upcoming auto auctions and featured vehicle inventory on this site."],
-              ["02", "Choose your event", "Click into the sale or lot that matches your interest and timeline."],
-              ["03", "Move to the JMA platform", "When you want full details or bidding access, we send you to the main Jeff Martin Auctioneers experience."],
-              ["04", "Register and bid", "Complete registration, get approved, and bid through the live auction environment."],
-            ].map(([step, title, body]) => (
-              <div key={step} className="border border-black/10 p-6">
-                <p className="font-display text-3xl text-gold">{step}</p>
+              {
+                step: "01",
+                icon: UserPlus,
+                title: "Register",
+                body: "Create your bidder account on the Jeff Martin Auctioneers platform and get approved before the sale.",
+              },
+              {
+                step: "02",
+                icon: Search,
+                title: "Browse",
+                body: "Compare upcoming auctions and featured vehicles to find the lots that match what you're looking for.",
+              },
+              {
+                step: "03",
+                icon: Gavel,
+                title: "Bid",
+                body: "Place bids live online or in person, and track your activity in real time during the auction.",
+              },
+              {
+                step: "04",
+                icon: Trophy,
+                title: "Win",
+                body: "Complete payment, arrange transport, and take delivery of your vehicle from a trusted source.",
+              },
+            ].map(({ step, icon: Icon, title, body }) => (
+              <div key={step} className="border border-white/15 bg-white/5 p-6">
+                <div className="flex items-center justify-between">
+                  <p className="font-display text-3xl text-gold">{step}</p>
+                  <Icon className="h-6 w-6 text-gold" strokeWidth={1.5} />
+                </div>
                 <h3 className="mt-4 font-display text-xl uppercase">{title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-black/70">{body}</p>
+                <p className="mt-3 text-sm leading-relaxed text-white/75">{body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-bone">
-        <div className="mx-auto max-w-7xl px-6 py-20 md:px-8 md:py-28">
-          <div className="border border-black/10 bg-white p-8 md:p-12">
-            <span className="eyebrow text-gold">For Sellers</span>
-            <h2 className="mt-4 font-display text-4xl uppercase leading-tight md:text-5xl">
-              Designed for fleets, lenders, dealers, and municipalities.
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-black/75">
-              The same site that captures buyer interest should also reassure sellers that JMA can
-              market and move volume inventory with speed, process discipline, and broad bidder exposure.
-            </p>
-            <div className="mt-6 space-y-3 text-sm text-black/70">
-              <p>Fleet reductions</p>
-              <p>Bank and lender dispositions</p>
-              <p>Municipal and utility vehicle sell-downs</p>
-              <p>Tow and recovery inventory</p>
-            </div>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Cta to="/sell" variant="gold">Consign Vehicles</Cta>
-              <Cta to="/contact" variant="outline">Talk to a Specialist</Cta>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-6 py-20 md:px-8 md:py-28">
-          <div className="grid gap-10 lg:grid-cols-12">
-            <div className="lg:col-span-7">
-              <span className="eyebrow text-gold">Support & Alerts</span>
-              <h2 className="mt-4 font-display text-4xl uppercase leading-tight md:text-5xl">
-                Need help before you bid?
-              </h2>
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-black/75">
-                Whether you are bidding for the first time or tracking a specific vehicle, our team
-                can help with registration questions, auction timing, and where to find the right inventory.
-              </p>
-              <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                <a href={siteConfig.phoneHref} className="border border-black/10 p-5 hover:border-black">
-                  <Phone className="h-5 w-5 text-gold" />
-                  <p className="mt-3 font-display text-xl uppercase">Call support</p>
-                  <p className="mt-2 text-sm text-black/70">{siteConfig.phone}</p>
-                </a>
-                <a href={siteConfig.emailHref} className="border border-black/10 p-5 hover:border-black">
-                  <Mail className="h-5 w-5 text-gold" />
-                  <p className="mt-3 font-display text-xl uppercase">Email support</p>
-                  <p className="mt-2 text-sm text-black/70">{siteConfig.email}</p>
-                </a>
-              </div>
-            </div>
-            <div className="lg:col-span-5">
-              <div className="border border-black/10 bg-bone p-6 md:p-8">
-                <p className="eyebrow text-gold">Auction Alerts</p>
-                <h3 className="mt-3 font-display text-2xl uppercase">Stay in the loop on new auto inventory.</h3>
-                <p className="mt-3 text-sm leading-relaxed text-black/70">
-                  Get updates on upcoming auto auctions and fresh inventory so you do not miss the next vehicle worth bidding on.
-                </p>
-                <div className="mt-6">
-                  <NewsletterForm />
+          <div className="border border-black/10 bg-bone p-8 md:p-12">
+            <span className="eyebrow text-gold">Fleet & Dealer Solutions</span>
+            <h2 className="mt-4 font-display text-4xl uppercase leading-tight md:text-5xl">
+              Selling Multiple <span className="text-gold">Vehicles?</span>
+            </h2>
+            <p className="mt-5 max-w-3xl text-base leading-relaxed text-black/75">
+              Built for dealers, fleet operators, lenders, and municipalities. JMA moves volume
+              inventory with disciplined process and broad bidder exposure across the country.
+            </p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              {[
+                "Dealer trade-ins and aged inventory",
+                "Fleet rotations and lease returns",
+                "Bank and lender repossessions",
+                "Municipal and utility sell-downs",
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="border border-black/10 bg-white px-4 py-3 text-sm font-medium text-black/75"
+                >
+                  {item}
                 </div>
-              </div>
+              ))}
+            </div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Cta to="/sell" variant="gold">Sell Your Vehicles</Cta>
+              <Cta to="/sell" variant="outline">Learn More</Cta>
             </div>
           </div>
         </div>
       </section>
 
       <section className="bg-black text-white">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:px-8 md:py-28">
+          <div className="max-w-3xl">
+            <span className="eyebrow text-gold">Why JMA</span>
+            <h2 className="mt-4 font-display text-4xl uppercase leading-tight md:text-5xl">
+              Why Choose <span className="text-gold">JMA Auto Auctions</span>
+            </h2>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/75">
+              Decades of auctioneering experience paired with a modern bidding platform, backed by
+              one of the country's most trusted names in the business.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {[
+              {
+                icon: Globe2,
+                title: "Nationwide Auctions",
+                body: "Live and online auto auctions held across the U.S., reaching buyers and sellers from coast to coast.",
+              },
+              {
+                icon: Monitor,
+                title: "Online Bidding",
+                body: "Bid from anywhere with a real-time online platform built for transparency, speed, and security.",
+              },
+              {
+                icon: Award,
+                title: "Quality Inventory",
+                body: "Carefully vetted vehicles from dealers, fleets, lenders, and municipal sources nationwide.",
+              },
+              {
+                icon: ShieldCheck,
+                title: "Trusted Auctioneer",
+                body: "Backed by Jeff Martin Auctioneers, a name buyers and sellers have relied on for generations.",
+              },
+            ].map(({ icon: Icon, title, body }) => (
+              <div key={title} className="border border-white/15 bg-white/5 p-6">
+                <Icon className="h-7 w-7 text-gold" strokeWidth={1.5} />
+                <h3 className="mt-5 font-display text-xl uppercase">{title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-white/75">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:px-8 md:py-28">
+          <div className="max-w-3xl">
+            <span className="eyebrow text-gold">Support</span>
+            <h2 className="mt-4 font-display text-4xl uppercase leading-tight md:text-5xl">
+              Need <span className="text-gold">Help?</span>
+            </h2>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-black/70">
+              Bidding for the first time or tracking a specific vehicle? Our team can help with
+              registration, auction timing, and finding the right inventory.
+            </p>
+          </div>
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            <a
+              href={siteConfig.phoneHref}
+              className="group flex flex-col border border-black/10 bg-bone p-6 transition-colors hover:border-gold"
+            >
+              <Phone className="h-7 w-7 text-gold" strokeWidth={1.5} />
+              <p className="mt-5 font-display text-xl uppercase">Call Support</p>
+              <p className="mt-2 text-sm text-black/70">{siteConfig.phone}</p>
+              <span className="mt-4 inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-[0.18em] text-gold">
+                Call now <ArrowRight className="h-3 w-3" />
+              </span>
+            </a>
+            <a
+              href={siteConfig.emailHref}
+              className="group flex flex-col border border-black/10 bg-bone p-6 transition-colors hover:border-gold"
+            >
+              <Mail className="h-7 w-7 text-gold" strokeWidth={1.5} />
+              <p className="mt-5 font-display text-xl uppercase">Email Support</p>
+              <p className="mt-2 text-sm text-black/70">{siteConfig.email}</p>
+              <span className="mt-4 inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-[0.18em] text-gold">
+                Send email <ArrowRight className="h-3 w-3" />
+              </span>
+            </a>
+            <Link
+              to="/faq"
+              className="group flex flex-col border border-black/10 bg-bone p-6 transition-colors hover:border-gold"
+            >
+              <HelpCircle className="h-7 w-7 text-gold" strokeWidth={1.5} />
+              <p className="mt-5 font-display text-xl uppercase">FAQ</p>
+              <p className="mt-2 text-sm text-black/70">Answers to common bidder questions</p>
+              <span className="mt-4 inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-[0.18em] text-gold">
+                Browse FAQ <ArrowRight className="h-3 w-3" />
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-black text-white">
         <div className="mx-auto max-w-7xl px-6 py-20 md:px-8 md:py-24">
-          <span className="eyebrow text-gold">Final CTA</span>
+          <span className="eyebrow text-gold">Get Started</span>
           <h2 className="mt-4 font-display text-4xl uppercase leading-tight md:text-5xl">
-            Ready to register for the next <span className="text-gold">auto auction?</span>
+            Ready to Register for the Next <span className="text-gold">Auto Auction?</span>
           </h2>
           <p className="mt-5 max-w-3xl text-base leading-relaxed text-white/75">
-            Browse the current auctions, review featured lots, and move into the main Jeff Martin
-            Auctioneers platform when you are ready to bid.
+            Browse current auctions, review featured vehicles, and head to Jeff Martin Auctioneers
+            when you're ready to place your first bid.
           </p>
           <div className="mt-8 flex flex-wrap gap-3.5">
             <Cta href={siteConfig.platform.auctionsUrl} variant="gold" size="lg">
               Register to Bid
             </Cta>
             <Cta href={siteConfig.platform.lotsUrl} variant="outline-light" size="lg">
-              Browse Auto Inventory
+              Browse Inventory
             </Cta>
           </div>
           <div className="mt-10 flex flex-wrap gap-6 text-sm text-white/70">

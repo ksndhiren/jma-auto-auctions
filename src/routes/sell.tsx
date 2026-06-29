@@ -19,18 +19,18 @@ export const Route = createFileRoute("/sell")({
 });
 
 const STEPS = [
-  { title: "Submit your asset information", description: "Tell us what you'd like to sell — a quick form gets the conversation started." },
+  { title: "Submit your asset information", description: "Tell us what you'd like to sell. A quick form gets the conversation started." },
   { title: "Speak with an auction specialist", description: "We'll discuss your goals, timeline, and the right sale format for your assets." },
   { title: "Receive a recommended sale strategy", description: "A tailored proposal covering format, marketing, expected exposure, and timing." },
   { title: "Prepare and market the assets", description: "Photography, descriptions, and targeted marketing to qualified bidders nationwide." },
-  { title: "Conduct the auction", description: "Live, online, or hybrid — managed end-to-end by our experienced auction team." },
+  { title: "Conduct the auction", description: "Live, online, or hybrid, managed end-to-end by our experienced auction team." },
   { title: "Settlement & removal", description: "Reliable post-sale settlement, buyer collection coordination, and final reporting." },
 ];
 
 function SellPage() {
   return (
     <SiteShell>
-      <section className="relative overflow-hidden border-b border-border bg-ink text-white">
+      <section className="relative overflow-hidden border-b border-border bg-black text-white">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(242,169,0,0.18),transparent_28%),linear-gradient(135deg,rgba(255,255,255,0.04),transparent_35%)]" />
         <div className="container-x relative grid gap-10 py-20 md:py-28 lg:grid-cols-12">
           <div className="lg:col-span-7">
@@ -61,7 +61,7 @@ function SellPage() {
           <div className="lg:col-span-7">
             <ul className="grid gap-6 sm:grid-cols-2">
               {[
-                { t: "Speed", d: "Move assets in a defined window — not over months on the market." },
+                { t: "Speed", d: "Move assets in a defined window, not over months on the market." },
                 { t: "Transparent pricing", d: "Live competitive bidding sets the market price on sale day." },
                 { t: "Bidder reach", d: "Marketing to a curated audience of qualified auto and fleet buyers nationwide." },
                 { t: "Single point of contact", d: "Specialist team manages everything from consultation to settlement." },
@@ -92,7 +92,7 @@ function SellPage() {
             "List of assets you'd like to sell (a rough inventory is fine)",
             "Approximate location of the assets",
             "Photos or condition notes where available",
-            "Any timing constraints — month-end, year-end, project deadlines",
+            "Any timing constraints: month-end, year-end, project deadlines",
             "Previous service records or operating hours where relevant",
             "Whether the assets need to remain in use until close to sale",
           ].map((p) => (

@@ -18,7 +18,7 @@ export const Route = createFileRoute("/faq")({
 function FAQPage() {
   return (
     <SiteShell>
-      <section className="border-b border-border bg-bone py-14 md:py-20">
+      <section className="border-b border-border bg-black text-white py-14 md:py-20">
         <div className="container-x">
           <Eyebrow>Help Centre</Eyebrow>
           <h1 className="mt-4 font-display text-4xl text-ink md:text-6xl">Frequently asked questions.</h1>

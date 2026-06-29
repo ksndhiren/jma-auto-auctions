@@ -29,7 +29,7 @@ function AuctionAlerts() {
             </p>
             <ul className="mt-8 space-y-3 text-sm text-ink">
               <li className="flex items-center gap-2"><span className="size-1.5 bg-gold" /> Targeted by category and region</li>
-              <li className="flex items-center gap-2"><span className="size-1.5 bg-gold" /> No spam — only auction-related updates</li>
+              <li className="flex items-center gap-2"><span className="size-1.5 bg-gold" /> No spam, only auction-related updates</li>
               <li className="flex items-center gap-2"><span className="size-1.5 bg-gold" /> Unsubscribe with one click</li>
             </ul>
           </div>

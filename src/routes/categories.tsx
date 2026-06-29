@@ -8,7 +8,7 @@ export const Route = createFileRoute("/categories")({
   head: () => ({
     meta: [
       { title: "Categories | JMA Auto Auctions" },
-      { name: "description", content: "Browse auctions by category — construction equipment, trucks and trailers, industrial assets, and agricultural equipment." },
+      { name: "description", content: "Browse auctions by category: construction equipment, trucks and trailers, industrial assets, and agricultural equipment." },
     ],
   }),
   component: CategoriesPage,
@@ -17,7 +17,7 @@ export const Route = createFileRoute("/categories")({
 function CategoriesPage() {
   return (
     <SiteShell>
-      <section className="border-b border-border bg-bone py-14 md:py-20">
+      <section className="border-b border-border bg-black text-white py-14 md:py-20">
         <div className="container-x">
           <Eyebrow>Categories</Eyebrow>
           <h1 className="mt-4 font-display text-4xl text-ink md:text-6xl">Asset categories.</h1>

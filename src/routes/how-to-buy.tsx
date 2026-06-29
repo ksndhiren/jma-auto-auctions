@@ -21,7 +21,7 @@ export const Route = createFileRoute("/how-to-buy")({
 const STEPS = [
   { title: "Find an auction", description: "Browse current and upcoming sales. Filter by category, format, or location to find auctions matching what you need." },
   { title: "Review the lots", description: "Each lot has photos, specifications, condition notes, and inspection details. Inspect in person where possible." },
-  { title: "Register to bid", description: "Create an account and complete bidder verification. Some sales require a refundable deposit — see the auction terms." },
+  { title: "Register to bid", description: "Create an account and complete bidder verification. Some sales require a refundable deposit; see the auction terms." },
   { title: "Bid live or online", description: "Place bids in real-time on the bidding platform, or attend live where applicable." },
   { title: "Pay & collect", description: "Settle your invoice promptly via the listed payment methods, then arrange collection within the published window." },
 ];
@@ -29,13 +29,13 @@ const STEPS = [
 function HowToBuy() {
   return (
     <SiteShell>
-      <section className="border-b border-border bg-bone py-14 md:py-24">
+      <section className="border-b border-border bg-black text-white py-14 md:py-24">
         <div className="container-x max-w-4xl">
           <Eyebrow>For Buyers</Eyebrow>
           <h1 className="mt-4 font-display text-4xl text-ink md:text-6xl">How to buy at auction.</h1>
           <p className="mt-5 max-w-2xl text-base text-muted-foreground md:text-lg">
             A clear, step-by-step guide to finding lots, registering, bidding, paying, and
-            collecting — whether you're buying online, live, or both.
+            collecting, whether you're buying online, live, or both.
           </p>
         </div>
       </section>

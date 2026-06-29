@@ -36,7 +36,7 @@ function CategoryDetail() {
 
   return (
     <SiteShell>
-      <section className="relative overflow-hidden border-b border-border bg-ink text-white">
+      <section className="relative overflow-hidden border-b border-border bg-black text-white">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(242,169,0,0.18),transparent_28%),linear-gradient(135deg,rgba(255,255,255,0.04),transparent_35%)]" />
         <div className="container-x relative py-16 md:py-24">
           <Link to="/categories" className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/60 hover:text-gold">‹ All categories</Link>

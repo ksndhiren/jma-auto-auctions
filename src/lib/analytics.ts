@@ -1,6 +1,6 @@
 /**
  * Analytics event tracking facade.
- * Wire this to GTM / GA / Meta Pixel etc. later — for now it logs in dev.
+ * Wire this to GTM / GA / Meta Pixel etc. later; for now it logs in dev.
  */
 
 export type AnalyticsEvent =

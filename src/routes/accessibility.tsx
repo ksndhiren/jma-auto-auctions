@@ -13,7 +13,7 @@ export const Route = createFileRoute("/accessibility")({
           <p className="mt-6 text-muted-foreground">
             JMA Auto Auctions is committed to ensuring digital accessibility for people with
             disabilities. We work to meet WCAG 2.1 AA standards across the site. If you experience
-            any difficulty accessing content, please contact us — we will respond promptly.
+            any difficulty accessing content, please contact us and we will respond promptly.
           </p>
         </div>
       </Section>

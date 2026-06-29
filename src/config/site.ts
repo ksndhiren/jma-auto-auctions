@@ -12,8 +12,8 @@ export const siteConfig = {
   url: "https://jma-auto-auctions.kapestrategy.workers.dev",
   phone: "+1 (844) 450 6200",
   phoneHref: "tel:18444506200",
-  email: "info@jeffmartinappraisals.com",
-  emailHref: "mailto:info@jeffmartinappraisals.com",
+  email: "info@jeffmartinauctioneers.com",
+  emailHref: "mailto:info@jeffmartinauctioneers.com",
   address: {
     line1: "Jeff Martin Auctioneers",
     line2: "Bidder support via the main JMA platform",
