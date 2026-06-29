@@ -21,9 +21,11 @@ import { LotCard } from "@/components/auction/LotCard";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { Cta } from "@/components/ui/cta";
 import { siteConfig } from "@/config/site";
-import { auctions, lots } from "@/data/mock";
+import { getUpcomingAuctions } from "@/data/auctions-feed";
+import { lots } from "@/data/mock";
 
 export const Route = createFileRoute("/")({
+  loader: async () => ({ featuredAuctions: await getUpcomingAuctions(4) }),
   head: () => ({
     meta: [
       { title: "JMA Auto Auctions | Upcoming Auto Auctions & Vehicle Lots" },
@@ -47,7 +49,7 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePage() {
-  const featuredAuctions = auctions.slice(0, 4);
+  const { featuredAuctions } = Route.useLoaderData();
   const featuredLots = lots.slice(0, 4);
   const heroBackgroundImage = "https://images.pexels.com/photos/70912/pexels-photo-70912.jpeg";
 
@@ -143,7 +145,7 @@ function HomePage() {
                   </p>
                   <p className="mt-1 text-sm text-black/65">{description}</p>
                 </div>
-                <span className="mt-4 inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-[0.18em] text-gold">
+                <span className="mt-auto inline-flex items-center gap-1 pt-4 text-[11px] font-bold uppercase tracking-[0.18em] text-gold">
                   Explore <ArrowRight className="h-3 w-3" />
                 </span>
               </>

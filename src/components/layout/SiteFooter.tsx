@@ -5,7 +5,8 @@ import { FOOTER_MENU } from "@/data/menu";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-black/10 bg-white text-ink">
+    <footer className="bg-white text-ink">
+      <div className="h-px w-full bg-gold" />
       <div className="mx-auto w-full max-w-[1520px] px-5 py-10 md:px-8 md:py-12 xl:px-10">
         <div className="border-b border-black/10 pb-5">
           <BrandLockup variant="dark" showAttribution={false} />
