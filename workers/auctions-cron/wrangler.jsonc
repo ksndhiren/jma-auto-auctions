@@ -5,9 +5,7 @@
   "compatibility_date": "2025-01-01",
   "compatibility_flags": ["nodejs_compat"],
   "kv_namespaces": [
-    // Create with: wrangler kv:namespace create AUCTIONS_KV --config workers/auctions-cron/wrangler.jsonc
-    // Paste the returned id below and remove this comment.
-    { "binding": "AUCTIONS_KV", "id": "REPLACE_WITH_KV_NAMESPACE_ID" }
+    { "binding": "AUCTIONS_KV", "id": "0b9e5c94855e41d7b807ca4c711705de" }
   ],
   "triggers": {
     // Daily 06:00 UTC: cheap path (skip work unless a stored auction expired).

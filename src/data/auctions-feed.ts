@@ -6,7 +6,8 @@
 import { auctions as mockAuctions } from "@/data/mock";
 import type { Auction } from "@/data/types";
 
-const DEFAULT_FEED_URL = "https://jma-auto-auctions-cron.workers.dev/auctions.json";
+const DEFAULT_FEED_URL =
+  "https://jma-auto-auctions-cron.kapestrategy.workers.dev/auctions.json";
 
 export interface FeedRow {
   id: string;

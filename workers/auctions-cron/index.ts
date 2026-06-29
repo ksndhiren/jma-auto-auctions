@@ -134,15 +134,29 @@ async function readStored(
 // --- Parsing -------------------------------------------------------------
 
 function parseAuctionsFromHtml(html: string): FeedAuction[] {
-  const blockRe = /<div class="auction\s+[^"]*">[\s\S]*?<\/div><\/div><\/div>/g;
-  const blocks = html.match(blockRe) ?? [];
+  // Split the HTML between consecutive auction-block openers so blocks with
+  // varying inner div nesting still parse cleanly.
+  const opener = /<div class="auction\s+[^"]*">/g;
+  const positions: number[] = [];
+  let m: RegExpExecArray | null;
+  while ((m = opener.exec(html)) !== null) positions.push(m.index);
+  if (positions.length === 0) return [];
+  positions.push(html.length);
+  const blocks: string[] = [];
+  for (let i = 0; i < positions.length - 1; i++) {
+    blocks.push(html.slice(positions[i], positions[i + 1]));
+  }
+
   return blocks
     .map((block): FeedAuction | null => {
       const title = pickText(block, /<p class="auctionTitle">([\s\S]*?)<\/p>/i);
       if (!title) return null;
-      const href = pickAttr(block, /<a href="(\/auctions\/[^"]+)"/i);
-      if (!href) return null;
-      const slug = href.split("/").pop() ?? "";
+      const rawHref = pickAttr(block, /<a[^>]+href="([^"]+)"/i);
+      if (!rawHref) return null;
+      const externalUrl = normalizeHref(rawHref);
+      // Slug = final path segment of the URL (after the auction id prefix).
+      const pathOnly = externalUrl.replace(/^https?:\/\/[^/]+/, "");
+      const slug = pathOnly.split("/").filter(Boolean).pop() ?? "";
       const idMatch = slug.match(/^(\d+)/);
       const id = idMatch ? idMatch[1] : slug;
       const type = pickText(block, /<div class="jmab-auction-type"><strong>([\s\S]*?)<\/strong>/i);
@@ -165,10 +179,17 @@ function parseAuctionsFromHtml(html: string): FeedAuction[] {
         endsAt: null,
         location: location || null,
         image: image || null,
-        externalUrl: `https://www.jeffmartinauctioneers.com${href}`,
+        externalUrl,
       };
     })
     .filter((x): x is FeedAuction => x !== null);
+}
+
+function normalizeHref(href: string): string {
+  if (href.startsWith("//")) return `https:${href}`;
+  if (href.startsWith("http")) return href;
+  if (href.startsWith("/")) return `https://www.jeffmartinauctioneers.com${href}`;
+  return `https://www.jeffmartinauctioneers.com/${href}`;
 }
 
 interface ApolloAuction {
@@ -261,8 +282,11 @@ function decodeEntities(s: string): string {
     .replace(/&gt;/g, ">")
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
+    .replace(/&#x27;/gi, "'")
     .replace(/&apos;/g, "'")
     .replace(/&nbsp;/g, " ")
     .replace(/&rsquo;/g, "’")
-    .replace(/&lsquo;/g, "‘");
+    .replace(/&lsquo;/g, "‘")
+    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(Number(n)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCharCode(parseInt(h, 16)));
 }
