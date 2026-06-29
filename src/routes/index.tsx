@@ -28,7 +28,7 @@ export const Route = createFileRoute("/")({
       },
       {
         property: "og:title",
-        content: "JMA Auto Auctions | Powered by Jeff Martin Auctioneers",
+        content: "JMA Auto Auctions | Upcoming Auto Auctions & Vehicle Inventory",
       },
       {
         property: "og:description",
@@ -43,30 +43,39 @@ export const Route = createFileRoute("/")({
 function HomePage() {
   const featuredAuctions = auctions.slice(0, 4);
   const featuredLots = lots.slice(0, 4);
+  const heroBackgroundImage = "https://images.pexels.com/photos/70912/pexels-photo-70912.jpeg";
 
   return (
     <SiteShell>
-      <section className="relative -mt-16 overflow-hidden bg-black text-white md:-mt-20">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(242,169,0,0.18),transparent_28%),linear-gradient(135deg,rgba(255,255,255,0.04),transparent_35%)]" />
-        <div className="relative mx-auto grid max-w-7xl gap-6 px-6 pb-5 pt-24 md:px-8 md:pb-8 md:pt-32 lg:grid-cols-12 lg:gap-7 lg:pt-36">
+      <section className="relative overflow-hidden bg-black text-white">
+        <div className="absolute inset-0">
+          {heroBackgroundImage && (
+            <img
+              src={heroBackgroundImage}
+              alt=""
+              aria-hidden="true"
+              className="h-full w-full object-cover object-center opacity-72"
+            />
+          )}
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.9)_0%,rgba(0,0,0,0.86)_46%,rgba(0,0,0,0.54)_72%,rgba(0,0,0,0.18)_100%),radial-gradient(circle_at_top_left,rgba(242,169,0,0.1),transparent_24%)]" />
+        </div>
+        <div className="relative mx-auto grid min-h-[calc(100vh-9rem)] max-w-7xl items-start gap-5 px-6 pb-2 pt-10 md:min-h-[calc(100vh-9.5rem)] md:px-8 md:pb-3 md:pt-12 lg:min-h-[calc(100vh-10rem)] lg:grid-cols-12 lg:gap-7 lg:pb-4 lg:pt-14">
           <div className="lg:col-span-8">
             <div className="mb-2 flex items-center gap-3">
               <span className="h-px w-10 bg-gold" />
-              <span className="eyebrow text-gold">Powered by Jeff Martin Auctioneers</span>
+              <span className="eyebrow text-gold">Upcoming Auctions And Inventory</span>
             </div>
-            <h1 className="max-w-5xl font-display text-4xl uppercase leading-[0.92] tracking-[0.01em] sm:text-5xl md:text-6xl lg:text-[4.85rem]">
-              <span className="block whitespace-nowrap">Current Auto Auction</span>
-              <span className="block whitespace-nowrap">Inventory Backed By</span>
-              <span className="block whitespace-nowrap text-gold">Jeff Martin</span>
-              <span className="block whitespace-nowrap text-gold">Auctioneers</span>
+            <h1 className="max-w-5xl font-display text-[2.7rem] uppercase leading-[0.9] tracking-[0.01em] sm:text-[3.25rem] md:text-[3.7rem] lg:text-[3.5rem]">
+              <span className="block">Browse Upcoming Auto</span>
+              <span className="block text-gold">Auctions And Featured</span>
+              <span className="block">Vehicle Inventory</span>
             </h1>
-            <p className="mt-3 max-w-[44rem] text-[15px] leading-relaxed text-white/80 md:text-base">
-              Browse upcoming auto auctions, take a close look at featured vehicles, and head into
-              Jeff Martin Auctioneers when you are ready to register and bid. Everything here is
-              designed to help you spot the right sale, watch the close date, and move quickly when
-              the right vehicle shows up.
+            <p className="mt-2 max-w-[36rem] text-[15px] leading-relaxed text-white/80 md:text-[15px]">
+              Explore upcoming sales, compare featured vehicles, and keep an eye on closing dates
+              before you head to the main bidding platform. This page is built to help you find the
+              right auction quickly and move with confidence when the right vehicle appears.
             </p>
-            <div className="mt-5 flex flex-wrap gap-3.5">
+            <div className="mt-3 flex flex-wrap gap-3">
               <Cta href={siteConfig.platform.auctionsUrl} variant="gold" size="lg">
                 Register to Bid
               </Cta>
@@ -75,13 +84,13 @@ function HomePage() {
               </Cta>
             </div>
           </div>
-          <div className="hidden items-end justify-end lg:col-span-4 lg:flex">
-            <div className="max-w-[17rem] border border-white/15 bg-black/40 p-4 backdrop-blur-sm">
-              <p className="font-display text-[1.85rem] leading-tight text-white">
-                Upcoming auto auctions, featured vehicles, and a fast path to bid when you are ready.
+          <div className="hidden items-start justify-end pt-10 lg:col-span-4 lg:flex">
+            <div className="max-w-[16rem] border border-white/15 bg-black/40 p-4 backdrop-blur-sm">
+              <p className="font-display text-[1.45rem] leading-tight text-white">
+                Auction dates, featured vehicles, and a clearer path to your next bid
               </p>
               <p className="mt-2 text-sm text-white/70">
-                Start here to compare sales, closings, and inventory before you continue to the full JMA auction platform.
+                Start here to compare timing, inventory, and lot volume before you continue to the full auction experience.
               </p>
             </div>
           </div>
@@ -112,7 +121,8 @@ function HomePage() {
             <div className="max-w-3xl">
               <span className="eyebrow text-gold">Upcoming Auto Auctions</span>
               <h2 className="mt-4 font-display text-4xl uppercase leading-tight md:text-5xl">
-                Find the next sale worth <span className="text-gold">watching closely.</span>
+                <span className="block">Find the next sale</span>
+                <span className="block text-gold whitespace-nowrap">worth watching closely</span>
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-black/70">
                 See the date, location, lot count, and timing at a glance. When an auction matches

@@ -23,36 +23,26 @@ export function SiteHeader() {
     setOpen(false);
   }, [pathname]);
 
-  const overlay = pathname === "/" && !scrolled && !open;
-
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full border-b transition-all duration-200",
-        overlay
-          ? "border-transparent bg-transparent py-3"
-          : "border-black/10 bg-white/95 py-2 backdrop-blur",
+        "sticky top-0 z-50 w-full border-b border-black/10 bg-white/95 py-2 backdrop-blur transition-all duration-200",
+        scrolled && "shadow-[0_10px_30px_-24px_rgba(0,0,0,0.35)]",
       )}
     >
       <div className="container-x flex items-center justify-between gap-6">
-        <BrandLockup variant={overlay ? "light" : "dark"} className="shrink-0" />
+        <BrandLockup variant="dark" className="shrink-0" showAttribution={false} />
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
           <a
             href={siteConfig.platform.auctionsUrl}
-            className={cn(
-              "relative whitespace-nowrap text-[12px] font-semibold uppercase tracking-[0.1em] transition-colors after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:bg-gold",
-              overlay ? "text-white/85 hover:text-gold" : "text-foreground/70 hover:text-ink",
-            )}
+            className="relative whitespace-nowrap text-[12px] font-semibold uppercase tracking-[0.1em] text-foreground/70 transition-colors after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:bg-gold hover:text-ink"
           >
             Auctions
           </a>
           <a
             href={siteConfig.platform.lotsUrl}
-            className={cn(
-              "relative whitespace-nowrap text-[12px] font-semibold uppercase tracking-[0.1em] transition-colors after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:bg-gold",
-              overlay ? "text-white/85 hover:text-gold" : "text-foreground/70 hover:text-ink",
-            )}
+            className="relative whitespace-nowrap text-[12px] font-semibold uppercase tracking-[0.1em] text-foreground/70 transition-colors after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:bg-gold hover:text-ink"
           >
             Inventory
           </a>
@@ -61,10 +51,7 @@ export function SiteHeader() {
               key={l.to}
               to={l.to}
               activeProps={{ className: "text-ink after:scale-x-100" }}
-              className={cn(
-                "relative whitespace-nowrap text-[12px] font-semibold uppercase tracking-[0.1em] transition-colors after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:scale-x-0 after:bg-gold after:transition-transform after:duration-200 hover:after:scale-x-100",
-                overlay ? "text-white/85 hover:text-gold" : "text-foreground/70 hover:text-ink",
-              )}
+              className="relative whitespace-nowrap text-[12px] font-semibold uppercase tracking-[0.1em] text-foreground/70 transition-colors after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:scale-x-0 after:bg-gold after:transition-transform after:duration-200 hover:text-ink hover:after:scale-x-100"
             >
               {l.label}
             </Link>
@@ -74,10 +61,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <a
             href={siteConfig.phoneHref}
-            className={cn(
-              "hidden items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.12em] transition-colors 2xl:flex",
-              overlay ? "text-white/80 hover:text-gold" : "text-foreground/70 hover:text-ink",
-            )}
+            className="hidden items-center gap-2 whitespace-nowrap text-[12px] font-semibold uppercase tracking-[0.12em] text-foreground/70 transition-colors hover:text-ink 2xl:flex"
             aria-label={`Call ${siteConfig.phone}`}
           >
             <Phone className="size-3.5 text-gold" />
@@ -93,10 +77,7 @@ export function SiteHeader() {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            className={cn(
-              "grid size-10 place-items-center border lg:hidden",
-              overlay ? "border-white/20 text-white" : "border-border-strong text-ink",
-            )}
+            className="grid size-10 place-items-center border border-border-strong text-ink lg:hidden"
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>

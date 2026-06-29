@@ -13,6 +13,14 @@ const auctionImage3 =
   "https://auctioneersoftware.s3.us-east-1.amazonaws.com/jmabt/2026/6/medium/mrDpaUlP5PJH-qJ4IOhVZGnv.jpeg";
 const auctionImage4 =
   "https://auctioneersoftware.s3.us-east-1.amazonaws.com/jmabt/2026/6/medium/w0yjuFtaxFFSjriWm29XwU-P.jpeg";
+const lotImage1 =
+  "https://auctioneersoftware.s3.us-east-1.amazonaws.com/jmabt/0/2026/6/medium/c994730e49686de4cf7d2cc2de947bd6.jpeg";
+const lotImage2 =
+  "https://auctioneersoftware.s3.us-east-1.amazonaws.com/jmabt/0/2026/6/medium/3e4edf18adbacd0d24b0352cb7bf8ab6.jpeg";
+const lotImage3 =
+  "https://auctioneersoftware.s3.us-east-1.amazonaws.com/jmabt/0/2026/6/medium/408b8fc5f246a9f292a6f9151281f2f3.jpeg";
+const lotImage4 =
+  "https://auctioneersoftware.s3.us-east-1.amazonaws.com/jmabt/0/2026/6/medium/c451b6711b6d13d1f9290bd6f2c43ead.jpeg";
 
 export const categories: Category[] = [
   {
@@ -148,7 +156,7 @@ export const lots: Lot[] = [
     closesAt: iso("2026-07-10T18:00:00-05:00"),
     externalUrl: "https://www.jeffmartinauctioneers.com/all-auction-lots",
     status: "open",
-    image: truck4,
+    image: lotImage1,
   },
   {
     id: "l-002",
@@ -177,7 +185,7 @@ export const lots: Lot[] = [
     closesAt: iso("2026-07-10T18:00:00-05:00"),
     externalUrl: "https://www.jeffmartinauctioneers.com/all-auction-lots",
     status: "open",
-    image: truck1,
+    image: lotImage2,
   },
   {
     id: "l-003",
@@ -206,7 +214,7 @@ export const lots: Lot[] = [
     closesAt: iso("2026-07-10T18:00:00-05:00"),
     externalUrl: "https://www.jeffmartinauctioneers.com/all-auction-lots",
     status: "open",
-    image: truck2,
+    image: lotImage3,
   },
   {
     id: "l-004",
@@ -235,7 +243,7 @@ export const lots: Lot[] = [
     closesAt: iso("2026-07-21T18:00:00-05:00"),
     externalUrl: "https://www.jeffmartinauctioneers.com/all-auction-lots",
     status: "open",
-    image: truck3,
+    image: lotImage4,
   },
   {
     id: "l-005",
