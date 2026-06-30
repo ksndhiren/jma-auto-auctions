@@ -31,7 +31,9 @@ export function BrandLockup({ variant = "dark", className, showAttribution = tru
             wordmark,
           )}
         >
-          JMAAutoAuction
+          <span>JMA</span>
+          <span className="text-gold">AUTO</span>
+          <span>AUCTIONS</span>
         </span>
       </Link>
       {showAttribution && (

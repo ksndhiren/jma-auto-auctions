@@ -42,7 +42,10 @@ export function AuctionCard({ auction, variant = "default" }: Props) {
               {auction.title}
             </h3>
           </div>
-          <StatusBadge status={auction.status} />
+          <StatusBadge
+            status={auction.status}
+            className={auction.status === "open" ? "max-w-[6.35rem] justify-center text-center leading-[1.15] whitespace-normal" : undefined}
+          />
         </div>
 
         {variant !== "compact" && (
@@ -60,10 +63,12 @@ export function AuctionCard({ auction, variant = "default" }: Props) {
             <MapPin className="size-3 text-gold" />
             <span className="font-semibold text-ink">{auction.location}</span>
           </div>
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <Package className="size-3 text-gold" />
-            <span className="font-semibold text-ink">{auction.lotCount} lots</span>
-          </div>
+          {auction.lotCount > 0 && (
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Package className="size-3 text-gold" />
+              <span className="font-semibold text-ink">{auction.lotCount} lots</span>
+            </div>
+          )}
         </dl>
 
         <div className="mt-auto border-t border-black/10 pt-4">

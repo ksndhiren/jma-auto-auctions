@@ -34,7 +34,7 @@ export function LotCard({ lot }: Props) {
         </div>
       )}
       <div className="flex flex-1 flex-col p-4">
-        <div className="flex items-start justify-between gap-3">
+        <div className="flex items-start gap-3">
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-gold-dark">
               Lot {lot.lotNumber}
@@ -43,9 +43,6 @@ export function LotCard({ lot }: Props) {
               {lot.title}
             </h3>
           </div>
-          <span className="shrink-0 border border-black/10 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/60">
-            {lot.status}
-          </span>
         </div>
 
         {lot.auctionName && (

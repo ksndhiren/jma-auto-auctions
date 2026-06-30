@@ -15,15 +15,26 @@ export const Route = createFileRoute("/about")({
 });
 
 function AboutPage() {
+  const heroBackgroundImage = "https://images.pexels.com/photos/70912/pexels-photo-70912.jpeg";
+
   return (
     <SiteShell>
-      <section className="border-b border-border bg-black text-white py-14 md:py-24">
-        <div className="container-x max-w-4xl">
-          <Eyebrow>About</Eyebrow>
-          <h1 className="mt-4 font-display text-4xl text-ink md:text-6xl">
-            JMA Auto Auctions, operated by {siteConfig.parent.name}.
+      <section className="relative overflow-hidden border-b border-border bg-black text-white">
+        <div className="absolute inset-0">
+          <img
+            src={heroBackgroundImage}
+            alt=""
+            aria-hidden="true"
+            className="h-full w-full object-cover object-center opacity-68"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.86)_48%,rgba(0,0,0,0.54)_74%,rgba(0,0,0,0.2)_100%),radial-gradient(circle_at_top_left,rgba(242,169,0,0.12),transparent_24%)]" />
+        </div>
+        <div className="relative container-x max-w-5xl py-16 md:py-24">
+          <Eyebrow tone="light">About</Eyebrow>
+          <h1 className="mt-4 max-w-4xl font-display text-4xl uppercase leading-[0.92] tracking-[0.01em] text-white md:text-6xl">
+            Built to help serious auto buyers move from discovery to bidding with confidence
           </h1>
-          <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+          <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/78">
             JMA Auto Auctions is the auto-focused discovery layer for {siteConfig.parent.name}. We
             help buyers preview upcoming auto events and vehicle inventory, then route them into
             the main bidding platform when they are ready to act.

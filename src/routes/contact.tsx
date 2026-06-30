@@ -16,13 +16,26 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const heroBackgroundImage = "https://images.pexels.com/photos/70912/pexels-photo-70912.jpeg";
+
   return (
     <SiteShell>
-      <section className="border-b border-border bg-black text-white py-14 md:py-20">
-        <div className="container-x">
-          <Eyebrow>Contact</Eyebrow>
-          <h1 className="mt-4 font-display text-4xl text-ink md:text-6xl">Let's talk.</h1>
-          <p className="mt-4 max-w-2xl text-base text-muted-foreground">
+      <section className="relative overflow-hidden border-b border-border bg-black text-white">
+        <div className="absolute inset-0">
+          <img
+            src={heroBackgroundImage}
+            alt=""
+            aria-hidden="true"
+            className="h-full w-full object-cover object-center opacity-68"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.86)_48%,rgba(0,0,0,0.56)_74%,rgba(0,0,0,0.22)_100%),radial-gradient(circle_at_top_left,rgba(242,169,0,0.12),transparent_24%)]" />
+        </div>
+        <div className="relative container-x py-16 md:py-24">
+          <Eyebrow tone="light">Contact</Eyebrow>
+          <h1 className="mt-4 max-w-4xl font-display text-4xl uppercase leading-[0.92] tracking-[0.01em] text-white md:text-6xl">
+            Talk with the team behind your next auto auction move
+          </h1>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/78">
             Buyer assistance, seller consultations, auction-specific support. Choose the
             department that fits and we'll get back within one business day.
           </p>
