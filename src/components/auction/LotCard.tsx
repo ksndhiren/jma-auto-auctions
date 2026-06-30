@@ -73,9 +73,6 @@ export function LotCard({ lot }: Props) {
               Live on JMA
             </span>
           </div>
-          <span className="mt-4 inline-flex w-full items-center justify-center border border-black px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink transition-colors group-hover:border-gold-dark group-hover:text-gold-dark">
-            View Vehicle
-          </span>
         </div>
       </div>
     </a>

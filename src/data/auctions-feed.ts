@@ -303,11 +303,20 @@ function enrichAuctionWithApollo(
   apollo: Record<string, ApolloAuction>,
 ): ScrapedAuctionRow {
   const match = apollo[row.id];
-  if (!match) return row;
+  if (!match) {
+    const inferred = inferAuctionTimesFromTitle(row.title);
+    return inferred
+      ? {
+          ...row,
+          startsAt: inferred.startsAt,
+          endsAt: inferred.endsAt,
+        }
+      : row;
+  }
   return {
     ...row,
-    startsAt: match.start_time ?? row.startsAt,
-    endsAt: match.end_time ?? row.endsAt,
+    startsAt: match.start_time ?? row.startsAt ?? inferAuctionTimesFromTitle(row.title)?.startsAt ?? null,
+    endsAt: match.end_time ?? row.endsAt ?? inferAuctionTimesFromTitle(row.title)?.endsAt ?? null,
   };
 }
 
@@ -472,6 +481,56 @@ function normalizeAuctionType(t: string): Auction["type"] {
   if (v.includes("online")) return "online";
   if (v.includes("hybrid") || v.includes("mixed") || v.includes("simulcast")) return "hybrid";
   return "live";
+}
+
+function inferAuctionTimesFromTitle(
+  title: string,
+): { startsAt: string; endsAt: string } | null {
+  const m = title.match(
+    /\b(JANUARY|FEBRUARY|MARCH|APRIL|MAY|JUNE|JULY|AUGUST|SEPTEMBER|OCTOBER|NOVEMBER|DECEMBER)\s+(\d{1,2})(?:ST|ND|RD|TH)?\s*@?\s*(\d{1,2})(?::(\d{2}))?\s*(AM|PM)\s*(ET|CT|MT|PT)?/i,
+  );
+  if (!m) return null;
+
+  const monthName = m[1].toLowerCase();
+  const day = Number(m[2]);
+  const hour12 = Number(m[3]);
+  const minute = Number(m[4] ?? "0");
+  const meridiem = m[5].toUpperCase();
+  const tz = (m[6] ?? "ET").toUpperCase();
+
+  const monthIndex = [
+    "january",
+    "february",
+    "march",
+    "april",
+    "may",
+    "june",
+    "july",
+    "august",
+    "september",
+    "october",
+    "november",
+    "december",
+  ].indexOf(monthName);
+  if (monthIndex < 0) return null;
+
+  const now = new Date();
+  let year = now.getUTCFullYear();
+  const currentMonth = now.getUTCMonth();
+  if (monthIndex < currentMonth - 6) year += 1;
+
+  let hour24 = hour12 % 12;
+  if (meridiem === "PM") hour24 += 12;
+
+  const offsets: Record<string, number> = { ET: -4, CT: -5, MT: -6, PT: -7 };
+  const offset = offsets[tz] ?? -4;
+  const utcMs = Date.UTC(year, monthIndex, day, hour24 - offset, minute);
+  const start = new Date(utcMs);
+  const end = new Date(utcMs + 4 * 60 * 60 * 1000);
+  return {
+    startsAt: start.toISOString(),
+    endsAt: end.toISOString(),
+  };
 }
 
 function titleCase(s: string): string {
