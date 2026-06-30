@@ -1,0 +1,74 @@
+name: Deploy to Cloudflare
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  app:
+    name: Deploy main app
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Patch compatibility_date if in the future
+        # The Nitro build stamps today's runner date as compatibility_date.
+        # Cloudflare rejects any date later than the current real-world day,
+        # so floor it to yesterday for safety.
+        run: |
+          node -e "
+            const fs=require('fs'), p='.output/server/wrangler.json';
+            const cfg=JSON.parse(fs.readFileSync(p,'utf8'));
+            const today=new Date(); today.setUTCDate(today.getUTCDate()-1);
+            const safe=today.toISOString().slice(0,10);
+            if(new Date(cfg.compatibility_date)>new Date(safe)){
+              cfg.compatibility_date=safe;
+              fs.writeFileSync(p, JSON.stringify(cfg,null,2));
+              console.log('Patched compatibility_date to',safe);
+            } else {
+              console.log('compatibility_date',cfg.compatibility_date,'is fine');
+            }
+          "
+
+      - name: Deploy with Wrangler
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+  cron:
+    name: Deploy auctions cron Worker
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Deploy with Wrangler
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: workers/auctions-cron
+          command: deploy
