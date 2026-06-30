@@ -366,12 +366,16 @@ function parseLotsFromApollo(
       status,
     });
   }
-  // Soonest-closing first; tie-break with most bids.
+  // Within a single auction every lot shares the same end_time, so closing
+  // time isn't a useful sort key. Surface the highest-value items first
+  // (vehicles tend to have starting bids in the hundreds-to-thousands;
+  // miscellaneous utility lots start at $5).
   rows.sort((a, b) => {
-    const ea = a.endsAt ? Date.parse(a.endsAt) : Number.POSITIVE_INFINITY;
-    const eb = b.endsAt ? Date.parse(b.endsAt) : Number.POSITIVE_INFINITY;
-    if (ea !== eb) return ea - eb;
-    return b.bidCount - a.bidCount;
+    const sa = a.startingBid ?? 0;
+    const sb = b.startingBid ?? 0;
+    if (sa !== sb) return sb - sa;
+    if (a.bidCount !== b.bidCount) return b.bidCount - a.bidCount;
+    return a.lotNumber.localeCompare(b.lotNumber);
   });
   return rows;
 }
