@@ -7,10 +7,10 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
+import { siteConfig } from "@/config/site";
 
 function NotFoundComponent() {
   return (
@@ -37,9 +37,6 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
     <div className="flex min-h-dvh items-center justify-center bg-background px-4">
@@ -84,16 +81,34 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "Jeff Martin Auctioneers" },
       { name: "theme-color", content: "#000000" },
+      { name: "application-name", content: siteConfig.name },
       { property: "og:title", content: "JMA Auto Auctions" },
       {
         property: "og:description",
         content: "A conversion-focused auto auction discovery site powered by Jeff Martin Auctioneers.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: siteConfig.name },
+      { property: "og:url", content: siteConfig.url },
+      { property: "og:image", content: `${siteConfig.url}/social-preview.png` },
+      { property: "og:image:secure_url", content: `${siteConfig.url}/social-preview.png` },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "JMA Auto Auctions preview" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "JMA Auto Auctions" },
+      {
+        name: "twitter:description",
+        content: "Preview upcoming auto auctions and featured vehicle inventory backed by Jeff Martin Auctioneers.",
+      },
+      { name: "twitter:image", content: `${siteConfig.url}/social-preview.png` },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png" },
+      { rel: "icon", type: "image/png", sizes: "192x192", href: "/icon-192.png" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
