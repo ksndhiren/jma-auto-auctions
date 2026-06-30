@@ -11,8 +11,8 @@ import type { Auction, Lot } from "@/data/types";
 
 const SOURCE_URL = "https://www.jeffmartinauctioneers.com/auctions";
 const APOLLO_PREFIX = "window.__APOLLO_STATE__ = ";
-const CACHE_KEY = new Request("https://cache.local/upcoming-feed/v2");
-const CACHE_TTL_SECONDS = 60 * 60; // 1h
+const CACHE_KEY = new Request("https://cache.local/upcoming-feed/v3");
+const CACHE_TTL_SECONDS = 60 * 5; // 5m keeps closed cards rotating out quickly
 const AUTO_INCLUDE = ["AUTO", "VEHICLE", "MOTORCYCLE", "UTV"];
 
 interface ScrapedAuctionRow {
@@ -95,8 +95,9 @@ export async function getUpcomingAuctions(limit = 4): Promise<Auction[]> {
 export async function getFeaturedLots(limit = 4): Promise<Lot[]> {
   const feed = await loadFeedWithCache();
   const live = feed.lots.map(rowToLot);
-  if (live.length > 0) return live.slice(0, limit);
-  return mockLots.slice(0, limit);
+  const ranked = filterAndSortLots(live, limit);
+  if (ranked.length > 0) return ranked;
+  return filterAndSortLots(mockLots, limit);
 }
 
 // --- Caching ------------------------------------------------------------
@@ -114,6 +115,10 @@ async function loadFeedWithCache(): Promise<FeedBundle> {
     }
   }
 
+  return await refreshLiveFeedCache();
+}
+
+export async function refreshLiveFeedCache(): Promise<FeedBundle> {
   let bundle: FeedBundle = { auctions: [], lots: [] };
   try {
     bundle = await scrapeAll();
@@ -121,6 +126,7 @@ async function loadFeedWithCache(): Promise<FeedBundle> {
     return bundle;
   }
 
+  const cache = getEdgeCache();
   if (cache && (bundle.auctions.length > 0 || bundle.lots.length > 0)) {
     await cache.put(
       CACHE_KEY,
@@ -440,6 +446,24 @@ function filterAndSortAuctions(items: Auction[], limit: number): Auction[] {
       (a) => a.status !== "closed" && (!a.endsAt || new Date(a.endsAt).getTime() > now),
     )
     .sort((a, b) => new Date(a.startsAt).getTime() - new Date(b.startsAt).getTime())
+    .slice(0, limit);
+}
+
+function filterAndSortLots(items: Lot[], limit: number): Lot[] {
+  const now = Date.now();
+  return items
+    .filter((lot) => !lot.closesAt || new Date(lot.closesAt).getTime() > now)
+    .sort((a, b) => {
+      const aValue = a.currentBid ?? a.openingBid ?? 0;
+      const bValue = b.currentBid ?? b.openingBid ?? 0;
+      if (aValue !== bValue) return bValue - aValue;
+
+      const aClose = a.closesAt ? new Date(a.closesAt).getTime() : Number.POSITIVE_INFINITY;
+      const bClose = b.closesAt ? new Date(b.closesAt).getTime() : Number.POSITIVE_INFINITY;
+      if (aClose !== bClose) return aClose - bClose;
+
+      return a.lotNumber.localeCompare(b.lotNumber);
+    })
     .slice(0, limit);
 }
 

@@ -37,7 +37,8 @@ jobs:
 
       - name: Patch compatibility_date if in the future
         # Nitro stamps today's runner date; floor to yesterday so Cloudflare
-        # never sees a future date.
+        # never sees a future date. Also inject the main Worker's weekly cron
+        # trigger so featured vehicle data refreshes without a second Worker.
         run: |
           node -e "
             const fs=require('fs'), p='.output/server/wrangler.json';
@@ -46,11 +47,12 @@ jobs:
             const safe=today.toISOString().slice(0,10);
             if(new Date(cfg.compatibility_date)>new Date(safe)){
               cfg.compatibility_date=safe;
-              fs.writeFileSync(p, JSON.stringify(cfg,null,2));
               console.log('Patched compatibility_date to',safe);
             } else {
               console.log('compatibility_date',cfg.compatibility_date,'is fine');
             }
+            cfg.triggers = { crons: ['0 6 * * 1'] };
+            fs.writeFileSync(p, JSON.stringify(cfg,null,2));
           "
 
       - name: Deploy app
