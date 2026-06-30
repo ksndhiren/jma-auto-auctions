@@ -21,11 +21,16 @@ import { LotCard } from "@/components/auction/LotCard";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { Cta } from "@/components/ui/cta";
 import { siteConfig } from "@/config/site";
-import { getUpcomingAuctions } from "@/data/auctions-feed";
-import { lots } from "@/data/mock";
+import { getUpcomingAuctions, getFeaturedLots } from "@/data/auctions-feed";
 
 export const Route = createFileRoute("/")({
-  loader: async () => ({ featuredAuctions: await getUpcomingAuctions(4) }),
+  loader: async () => {
+    const [featuredAuctions, featuredLots] = await Promise.all([
+      getUpcomingAuctions(4),
+      getFeaturedLots(4),
+    ]);
+    return { featuredAuctions, featuredLots };
+  },
   head: () => ({
     meta: [
       { title: "JMA Auto Auctions | Upcoming Auto Auctions & Vehicle Lots" },
@@ -49,8 +54,7 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePage() {
-  const { featuredAuctions } = Route.useLoaderData();
-  const featuredLots = lots.slice(0, 4);
+  const { featuredAuctions, featuredLots } = Route.useLoaderData();
   const heroBackgroundImage = "https://images.pexels.com/photos/70912/pexels-photo-70912.jpeg";
 
   return (
