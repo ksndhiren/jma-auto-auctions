@@ -11,7 +11,7 @@ import type { Auction, Lot } from "@/data/types";
 
 const SOURCE_URL = "https://www.jeffmartinauctioneers.com/auctions";
 const APOLLO_PREFIX = "window.__APOLLO_STATE__ = ";
-const CACHE_KEY = new Request("https://cache.local/upcoming-feed/v1");
+const CACHE_KEY = new Request("https://cache.local/upcoming-feed/v2");
 const CACHE_TTL_SECONDS = 60 * 60; // 1h
 const AUTO_INCLUDE = ["AUTO", "VEHICLE", "MOTORCYCLE", "UTV"];
 
