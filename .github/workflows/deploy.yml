@@ -57,19 +57,3 @@ jobs:
         # Wrangler auto-discovers the Nitro-generated .wrangler/deploy/config.json
         # which points at .output/server/wrangler.json.
         run: npx --yes wrangler@4 deploy
-
-  cron:
-    name: Deploy auctions cron Worker
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Deploy cron Worker
-        working-directory: workers/auctions-cron
-        run: npx --yes wrangler@4 deploy --config wrangler.jsonc
