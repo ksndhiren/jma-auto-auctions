@@ -23,7 +23,10 @@ jobs:
           node-version: 20
           cache: npm
 
-      - run: npm ci
+      - name: Install deps
+        # `npm ci` rejects platform-specific optional packages pinned in the
+        # lockfile (e.g. @esbuild/aix-ppc64). `npm install` tolerates them.
+        run: npm install --no-audit --no-fund
 
       - name: Build
         run: npm run build
@@ -71,4 +74,5 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: workers/auctions-cron
-          command: deploy
+          wranglerVersion: "4"
+          command: deploy --config wrangler.jsonc
