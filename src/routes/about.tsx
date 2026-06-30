@@ -15,7 +15,8 @@ export const Route = createFileRoute("/about")({
 });
 
 function AboutPage() {
-  const heroBackgroundImage = "https://images.pexels.com/photos/70912/pexels-photo-70912.jpeg";
+  const heroBackgroundImage =
+    "https://images.pexels.com/photos/36814641/pexels-photo-36814641.jpeg?auto=compress&cs=tinysrgb&w=1600";
 
   return (
     <SiteShell>
@@ -31,8 +32,10 @@ function AboutPage() {
         </div>
         <div className="relative container-x max-w-5xl py-16 md:py-24">
           <Eyebrow tone="light">About</Eyebrow>
-          <h1 className="mt-4 max-w-4xl font-display text-4xl uppercase leading-[0.92] tracking-[0.01em] text-white md:text-6xl">
-            Built to help serious auto buyers move from discovery to bidding with confidence
+          <h1 className="mt-4 max-w-3xl font-display text-4xl uppercase leading-[0.92] tracking-[0.01em] text-white md:text-6xl">
+            <span className="block">Built to help serious auto buyers</span>
+            <span className="block">move from discovery</span>
+            <span className="block">to bidding with confidence</span>
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/78">
             JMA Auto Auctions is the auto-focused discovery layer for {siteConfig.parent.name}. We

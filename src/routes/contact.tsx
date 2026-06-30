@@ -16,7 +16,8 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
-  const heroBackgroundImage = "https://images.pexels.com/photos/70912/pexels-photo-70912.jpeg";
+  const heroBackgroundImage =
+    "https://images.pexels.com/photos/5982896/pexels-photo-5982896.jpeg?auto=compress&cs=tinysrgb&w=1600";
 
   return (
     <SiteShell>
