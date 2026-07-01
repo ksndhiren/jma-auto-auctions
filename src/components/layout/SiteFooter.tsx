@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { Phone, Mail } from "lucide-react";
 import { BrandLockup } from "@/components/brand/BrandLockup";
 import { siteConfig } from "@/config/site";
@@ -21,12 +22,12 @@ export function SiteFooter() {
               <ul className="mt-4 space-y-2 text-sm">
                 {col.items.map((it) => (
                   <li key={it.label}>
-                    <a
-                      href={it.href}
+                    <Link
+                      to={it.href}
                       className="text-black/65 transition-colors hover:text-gold"
                     >
                       {it.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -38,12 +39,12 @@ export function SiteFooter() {
             </p>
             <ul className="mt-4 space-y-2 text-sm">
               <li>
-                <a
-                  href="/contact/"
+                <Link
+                  to="/contact"
                   className="text-black/65 transition-colors hover:text-gold"
                 >
                   Contact
-                </a>
+                </Link>
               </li>
               <li className="flex items-start gap-2 text-black/65">
                 <Phone className="mt-0.5 size-4 shrink-0 text-gold" />
@@ -61,12 +62,12 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-8 flex justify-end">
+        <div className="mt-8 flex justify-center">
           <a
             href="https://www.jeffmartinauctioneers.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex flex-col items-end gap-1"
+            className="inline-flex flex-col items-center gap-1 text-center"
             aria-label="Jeff Martin Auctioneers"
           >
             <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-black/55">
@@ -75,6 +76,10 @@ export function SiteFooter() {
             <img
               src="/jeff-martin.png"
               alt="Jeff Martin Auctioneers"
+              width="172"
+              height="36"
+              loading="lazy"
+              decoding="async"
               className="h-9 w-auto object-contain"
             />
           </a>

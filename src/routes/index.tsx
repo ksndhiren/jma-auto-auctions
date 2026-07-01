@@ -22,6 +22,7 @@ import { SiteShell } from "@/components/layout/SiteShell";
 import { Cta } from "@/components/ui/cta";
 import { siteConfig } from "@/config/site";
 import { getUpcomingAuctions, getFeaturedLots } from "@/data/auctions-feed";
+import { getOptimizedImageUrl } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
   loader: async () => {
@@ -55,7 +56,10 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   const { featuredAuctions, featuredLots } = Route.useLoaderData();
-  const heroBackgroundImage = "https://images.pexels.com/photos/70912/pexels-photo-70912.jpeg";
+  const heroBackgroundImage = getOptimizedImageUrl(
+    "https://images.pexels.com/photos/70912/pexels-photo-70912.jpeg",
+    { width: 1600, quality: 76, fit: "cover" },
+  );
 
   return (
     <SiteShell>
@@ -66,6 +70,8 @@ function HomePage() {
               src={heroBackgroundImage}
               alt=""
               aria-hidden="true"
+              fetchPriority="high"
+              decoding="async"
               className="h-full w-full object-cover object-center opacity-72"
             />
           )}
@@ -101,7 +107,8 @@ function HomePage() {
                 Auction dates, featured vehicles, and a clearer path to your next bid
               </p>
               <p className="mt-2 text-sm text-white/70">
-                Start here to compare timing, inventory, and lot volume before you continue to the full auction experience.
+                Start here to compare timing, inventory, and lot volume before you continue to the
+                full auction experience.
               </p>
             </div>
           </div>
@@ -127,9 +134,9 @@ function HomePage() {
             },
             {
               icon: Truck,
-              label: "Sell Your Vehicle",
-              description: "Consign with confidence",
-              href: "/sell",
+              label: "Dealer Inventory",
+              description: "Browse commercial-ready units",
+              href: "/dealer-inventory",
               external: false,
             },
             {
@@ -179,10 +186,16 @@ function HomePage() {
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/75">
                 See location, date, vehicle count, and timing at a glance. When an auction matches
-                what you're after, jump to Jeff Martin Auctioneers for full details and bidding access.
+                what you&apos;re after, jump to Jeff Martin Auctioneers for full details and
+                bidding access.
               </p>
             </div>
-            <Cta href={siteConfig.platform.auctionsUrl} variant="gold" size="sm" className="hidden md:inline-flex">
+            <Cta
+              href={siteConfig.platform.auctionsUrl}
+              variant="gold"
+              size="sm"
+              className="hidden md:inline-flex"
+            >
               View All Auctions
             </Cta>
           </div>
@@ -207,7 +220,12 @@ function HomePage() {
                 auction date. When one catches your eye, continue to the full lot details.
               </p>
             </div>
-            <Cta href={siteConfig.platform.lotsUrl} variant="dark" size="sm" className="hidden md:inline-flex">
+            <Cta
+              href={siteConfig.platform.lotsUrl}
+              variant="dark"
+              size="sm"
+              className="hidden md:inline-flex"
+            >
               View Inventory
             </Cta>
           </div>
@@ -294,8 +312,12 @@ function HomePage() {
               ))}
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Cta to="/sell" variant="gold">Sell Your Vehicles</Cta>
-              <Cta to="/sell" variant="outline">Learn More</Cta>
+              <Cta to="/dealer-inventory" variant="gold">
+                Browse Dealer Inventory
+              </Cta>
+              <Cta to="/contact" variant="outline">
+                Talk to Our Team
+              </Cta>
             </div>
           </div>
         </div>
@@ -310,7 +332,7 @@ function HomePage() {
             </h2>
             <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/75">
               Decades of auctioneering experience paired with a modern bidding platform, backed by
-              one of the country's most trusted names in the business.
+              one of the country&apos;s most trusted names in the business.
             </p>
           </div>
           <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
@@ -382,14 +404,14 @@ function HomePage() {
               </span>
             </a>
             <Link
-              to="/faq"
+              to="/contact"
               className="group flex flex-col border border-black/10 bg-bone p-6 transition-colors hover:border-gold"
             >
               <HelpCircle className="h-7 w-7 text-gold" strokeWidth={1.5} />
-              <p className="mt-5 font-display text-xl uppercase">FAQ</p>
-              <p className="mt-2 text-sm text-black/70">Answers to common bidder questions</p>
+              <p className="mt-5 font-display text-xl uppercase">Contact</p>
+              <p className="mt-2 text-sm text-black/70">Talk to our team about buying or selling</p>
               <span className="mt-4 inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-[0.18em] text-gold">
-                Browse FAQ <ArrowRight className="h-3 w-3" />
+                Contact us <ArrowRight className="h-3 w-3" />
               </span>
             </Link>
           </div>
@@ -404,7 +426,7 @@ function HomePage() {
           </h2>
           <p className="mt-5 max-w-3xl text-base leading-relaxed text-white/75">
             Browse current auctions, review featured vehicles, and head to Jeff Martin Auctioneers
-            when you're ready to place your first bid.
+            when you&apos;re ready to place your first bid.
           </p>
           <div className="mt-8 flex flex-wrap gap-3.5">
             <Cta href={siteConfig.platform.auctionsUrl} variant="gold" size="lg">
@@ -415,8 +437,12 @@ function HomePage() {
             </Cta>
           </div>
           <div className="mt-10 flex flex-wrap gap-6 text-sm text-white/70">
-            <span className="inline-flex items-center gap-2"><Calendar className="h-4 w-4 text-gold" /> Upcoming closings and live timelines</span>
-            <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-gold" /> JMA-backed auction process</span>
+            <span className="inline-flex items-center gap-2">
+              <Calendar className="h-4 w-4 text-gold" /> Upcoming closings and live timelines
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-gold" /> JMA-backed auction process
+            </span>
           </div>
         </div>
       </section>

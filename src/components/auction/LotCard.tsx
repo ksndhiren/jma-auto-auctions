@@ -29,6 +29,7 @@ export function LotCard({ lot }: Props) {
             loading="lazy"
             decoding="async"
             fetchPriority="low"
+            sizes="(min-width: 1280px) 22vw, (min-width: 768px) 42vw, 92vw"
             className="h-full w-full object-contain object-center transition-transform duration-500 group-hover:scale-[1.02]"
           />
         </div>

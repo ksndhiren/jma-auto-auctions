@@ -23,6 +23,9 @@ export function BrandLockup({ variant = "dark", className, showAttribution = tru
         <img
           src={logoSrc}
           alt="JMA Auto Auctions"
+          width="112"
+          height="64"
+          decoding="async"
           className="h-14 w-auto shrink-0 bg-transparent md:h-16"
         />
         <span
@@ -56,6 +59,10 @@ export function BrandLockup({ variant = "dark", className, showAttribution = tru
             <img
               src="/jeff-martin.png"
               alt="Jeff Martin Auctioneers"
+              width="134"
+              height="28"
+              loading="lazy"
+              decoding="async"
               className={cn(
                 "h-7 w-auto object-contain",
                 isLight && "brightness-0 invert",

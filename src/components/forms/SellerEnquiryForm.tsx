@@ -167,7 +167,7 @@ export function SellerEnquiryForm() {
                   id="category"
                   value={data.category}
                   onChange={(e) => update("category", e.target.value)}
-                  className="h-10 w-full border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                  className="h-10 w-full border border-input bg-white px-3 text-sm text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
                 >
                   <option value="">Select…</option>
                   {categories.map((c) => (
@@ -206,7 +206,7 @@ export function SellerEnquiryForm() {
                   id="timeframe"
                   value={data.timeframe}
                   onChange={(e) => update("timeframe", e.target.value)}
-                  className="h-10 w-full border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                  className="h-10 w-full border border-input bg-white px-3 text-sm text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
                 >
                   <option value="">Select…</option>
                   <option value="asap">As soon as possible</option>

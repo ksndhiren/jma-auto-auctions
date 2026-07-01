@@ -42,6 +42,7 @@ const ALLOWED_IMAGE_HOSTS = new Set([
   "jeffmartininc.s3.amazonaws.com",
   "auctioneersoftware.s3.amazonaws.com",
   "auctioneersoftware.s3.us-east-1.amazonaws.com",
+  "images.pexels.com",
 ]);
 
 async function handleImageProxy(request: Request): Promise<Response> {
@@ -125,6 +126,13 @@ function clampNumber(
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     const url = new URL(request.url);
+    const normalizedPath = normalizeRequestPath(url.pathname);
+
+    if (normalizedPath !== url.pathname) {
+      url.pathname = normalizedPath;
+      return Response.redirect(url.toString(), 308);
+    }
+
     if (url.pathname === "/_image") {
       return await handleImageProxy(request);
     }
@@ -149,3 +157,16 @@ export default {
     ctx.waitUntil(refreshLiveFeedCache());
   },
 };
+
+function normalizeRequestPath(pathname: string): string {
+  if (pathname === "/") return "/";
+
+  const collapsed = pathname.replace(/\/{2,}/g, "/");
+  const trimmed = collapsed.replace(/\/+$/, "");
+
+  if (trimmed === "" || trimmed === "/index.html") {
+    return "/";
+  }
+
+  return trimmed;
+}

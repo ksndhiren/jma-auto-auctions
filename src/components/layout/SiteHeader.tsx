@@ -1,4 +1,4 @@
-import { useRouterState } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { ChevronDown, Menu, X, Phone } from "lucide-react";
 import { useEffect, useState } from "react";
 import { BrandLockup } from "@/components/brand/BrandLockup";
@@ -51,7 +51,7 @@ export function SiteHeader() {
             const hasChildren = !!item.children?.length;
             return (
               <div key={item.label} className={cn(hasChildren && "group relative")}>
-                <a
+                <NavLink
                   href={item.href}
                   className={cn(
                     "inline-flex items-center gap-1 whitespace-nowrap text-[12px] font-semibold uppercase tracking-[0.08em] transition-colors",
@@ -60,19 +60,19 @@ export function SiteHeader() {
                 >
                   <span>{item.label}</span>
                   {hasChildren ? <ChevronDown className="h-3.5 w-3.5" /> : null}
-                </a>
+                </NavLink>
                 {hasChildren ? (
                   <div className="invisible absolute left-0 top-full z-30 pt-3 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100">
                     <div className="min-w-[280px] border border-black/10 bg-white shadow-[0_24px_60px_rgba(0,0,0,0.16)]">
                       <div className="grid gap-px bg-black/10">
                         {item.children!.map((child) => (
-                          <a
+                          <NavLink
                             key={child.label}
                             href={child.href}
                             className="bg-white px-4 py-3 text-sm text-black/82 transition-colors hover:bg-bone hover:text-gold"
                           >
                             {child.label}
-                          </a>
+                          </NavLink>
                         ))}
                       </div>
                     </div>
@@ -146,13 +146,13 @@ function MobileMenuRow({
   const hasChildren = !!item.children?.length;
   if (!hasChildren) {
     return (
-      <a
+      <NavLink
         href={item.href}
         className="flex items-center justify-between border-b border-white/10 py-4 text-lg font-semibold uppercase tracking-[0.08em] text-white transition-colors hover:text-gold"
       >
         {item.label}
         <span className="text-gold">›</span>
-      </a>
+      </NavLink>
     );
   }
   return (
@@ -169,23 +169,47 @@ function MobileMenuRow({
       </button>
       {expanded ? (
         <div className="flex flex-col gap-1 pb-3 pl-3">
-          <a
+          <NavLink
             href={item.href}
             className="px-2 py-2 text-sm font-medium uppercase tracking-[0.08em] text-white/75 hover:text-gold"
           >
             {item.label}
-          </a>
+          </NavLink>
           {item.children!.map((child) => (
-            <a
+            <NavLink
               key={child.label}
               href={child.href}
               className="px-2 py-2 text-sm text-white/72 transition-colors hover:text-gold"
             >
               {child.label}
-            </a>
+            </NavLink>
           ))}
         </div>
       ) : null}
     </div>
+  );
+}
+
+function NavLink({
+  href,
+  className,
+  children,
+}: {
+  href: string;
+  className: string;
+  children: React.ReactNode;
+}) {
+  if (href.startsWith("http")) {
+    return (
+      <a href={href} className={className}>
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <Link to={href} className={className}>
+      {children}
+    </Link>
   );
 }

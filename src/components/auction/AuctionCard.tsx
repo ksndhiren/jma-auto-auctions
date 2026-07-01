@@ -1,5 +1,6 @@
 import { Calendar, MapPin, Package } from "lucide-react";
 import type { Auction } from "@/data/types";
+import { getOptimizedImageUrl } from "@/lib/utils";
 import { Countdown } from "./Countdown";
 import { StatusBadge } from "./StatusBadge";
 
@@ -14,6 +15,11 @@ export function AuctionCard({ auction, variant = "default" }: Props) {
     day: "numeric",
     year: "numeric",
   });
+  const imageSrc = getOptimizedImageUrl(auction.image, {
+    width: variant === "compact" ? 860 : 960,
+    quality: 74,
+    fit: "cover",
+  });
 
   return (
     <a
@@ -23,9 +29,11 @@ export function AuctionCard({ auction, variant = "default" }: Props) {
       {auction.image && (
         <div className="aspect-[16/9] overflow-hidden border-b border-black/10 bg-black">
           <img
-            src={auction.image}
+            src={imageSrc}
             alt={auction.title}
             loading="lazy"
+            decoding="async"
+            fetchPriority="low"
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         </div>

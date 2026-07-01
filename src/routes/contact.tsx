@@ -2,8 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { Section, Eyebrow } from "@/components/layout/Section";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { siteConfig } from "@/config/site";
+import { absoluteUrl } from "@/lib/seo";
+import { getOptimizedImageUrl } from "@/lib/utils";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -16,17 +19,33 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
-  const heroBackgroundImage =
-    "https://images.pexels.com/photos/5982896/pexels-photo-5982896.jpeg?auto=compress&cs=tinysrgb&w=1600";
+  const heroBackgroundImage = getOptimizedImageUrl(
+    "https://images.pexels.com/photos/5982896/pexels-photo-5982896.jpeg",
+    { width: 1600, quality: 76, fit: "cover" },
+  );
+  const contactPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact JMA Auto Auctions",
+    url: absoluteUrl("/contact"),
+    description:
+      "Speak with the JMA Auto Auctions team about buying, selling, support, or auction-specific questions.",
+    about: {
+      "@id": `${siteConfig.url}#localbusiness`,
+    },
+  };
 
   return (
     <SiteShell>
+      <JsonLd data={contactPageSchema} />
       <section className="relative overflow-hidden border-b border-border bg-black text-white">
         <div className="absolute inset-0">
           <img
             src={heroBackgroundImage}
             alt=""
             aria-hidden="true"
+            fetchPriority="high"
+            decoding="async"
             className="h-full w-full object-cover object-center opacity-68"
           />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.92)_0%,rgba(0,0,0,0.86)_48%,rgba(0,0,0,0.56)_74%,rgba(0,0,0,0.22)_100%),radial-gradient(circle_at_top_left,rgba(242,169,0,0.12),transparent_24%)]" />
@@ -49,7 +68,11 @@ function ContactPage() {
             <ul className="mt-6 space-y-5">
               <ContactRow icon={Phone} label="Telephone" value={siteConfig.phone} href={siteConfig.phoneHref} />
               <ContactRow icon={Mail} label="Email" value={siteConfig.email} href={siteConfig.emailHref} />
-              <ContactRow icon={MapPin} label="Office" value={`${siteConfig.address.line1}, ${siteConfig.address.line2}`} />
+              <ContactRow
+                icon={MapPin}
+                label="Office"
+                value={[siteConfig.address.line1, siteConfig.address.line2]}
+              />
               <ContactRow icon={Clock} label="Hours" value={siteConfig.hours} />
             </ul>
             <p className="mt-8 border-l-2 border-gold bg-bone p-4 text-xs text-muted-foreground">
@@ -69,7 +92,17 @@ function ContactPage() {
   );
 }
 
-function ContactRow({ icon: Icon, label, value, href }: { icon: any; label: string; value: string; href?: string }) {
+function ContactRow({
+  icon: Icon,
+  label,
+  value,
+  href,
+}: {
+  icon: any;
+  label: string;
+  value: string | string[];
+  href?: string;
+}) {
   const content = (
     <li className="flex items-start gap-4 border-b border-border pb-5">
       <span className="grid size-10 shrink-0 place-items-center border border-border bg-bone">
@@ -77,7 +110,15 @@ function ContactRow({ icon: Icon, label, value, href }: { icon: any; label: stri
       </span>
       <div>
         <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">{label}</p>
-        <p className="mt-0.5 text-sm font-semibold text-ink">{value}</p>
+        {Array.isArray(value) ? (
+          <div className="mt-0.5 space-y-0.5 text-sm font-semibold text-ink">
+            {value.map((line) => (
+              <p key={line}>{line}</p>
+            ))}
+          </div>
+        ) : (
+          <p className="mt-0.5 text-sm font-semibold text-ink">{value}</p>
+        )}
       </div>
     </li>
   );

@@ -6,27 +6,50 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  useRouterState,
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
+import { JsonLd } from "@/components/seo/JsonLd";
 import appCss from "../styles.css?url";
 import { siteConfig } from "@/config/site";
+import {
+  absoluteUrl,
+  buildBreadcrumbSchema,
+  buildLocalBusinessSchema,
+  buildOrganizationSchema,
+  buildWebsiteSchema,
+  normalizePathname,
+} from "@/lib/seo";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-dvh items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <p className="eyebrow">Error 404</p>
-        <h1 className="mt-3 text-5xl text-foreground">Page not found</h1>
-        <p className="mt-4 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+    <div className="flex min-h-dvh items-center justify-center bg-black px-4 text-white">
+      <div className="max-w-2xl border border-white/12 bg-white/[0.04] p-8 text-center backdrop-blur-sm md:p-10">
+        <p className="eyebrow text-gold">Error 404</p>
+        <h1 className="mt-3 font-display text-5xl text-white md:text-6xl">Page not found</h1>
+        <p className="mt-4 text-sm leading-relaxed text-white/72 md:text-base">
+          The page you tried to reach is no longer here, or the URL may have changed. You can go
+          back to the homepage, browse current auto auctions, or contact the team directly.
         </p>
-        <div className="mt-8">
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link
             to="/"
-            className="inline-flex items-center justify-center bg-ink px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-colors hover:bg-gold hover:text-black"
+            className="inline-flex min-h-11 items-center justify-center bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-wider text-black transition-colors hover:bg-gold-dark"
           >
             Return Home
+          </Link>
+          <Link
+            to="/auto-auctions"
+            className="inline-flex min-h-11 items-center justify-center border border-white/30 px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black"
+          >
+            View Auto Auctions
+          </Link>
+          <Link
+            to="/contact"
+            className="inline-flex min-h-11 items-center justify-center border border-white/20 px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white/88 transition-colors hover:border-gold hover:text-gold"
+          >
+            Contact
           </Link>
         </div>
       </div>
@@ -124,10 +147,32 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const normalizedPathname = normalizePathname(pathname);
+  const canonicalUrl = absoluteUrl(normalizedPathname);
+  const globalSchemas = [
+    buildOrganizationSchema(),
+    buildWebsiteSchema(),
+    buildLocalBusinessSchema(),
+    buildBreadcrumbSchema(normalizedPathname),
+  ];
+
   return (
     <html lang="en">
       <head>
         <HeadContent />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta
+          name="robots"
+          content={
+            normalizedPathname === "/privacy" || normalizedPathname === "/terms"
+              ? "noindex,follow"
+              : "index,follow"
+          }
+        />
+        {globalSchemas.map((schema, index) => (
+          <JsonLd key={index} data={schema} />
+        ))}
       </head>
       <body>
         {children}

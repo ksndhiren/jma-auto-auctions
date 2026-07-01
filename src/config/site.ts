@@ -15,8 +15,8 @@ export const siteConfig = {
   email: "info@jeffmartinauctioneers.com",
   emailHref: "mailto:info@jeffmartinauctioneers.com",
   address: {
-    line1: "Jeff Martin Auctioneers",
-    line2: "Bidder support via the main JMA platform",
+    line1: "Jeff Martin Auctioneers, Inc. 2236 Hwy 49",
+    line2: "Brooklyn, MS 39425",
     country: "USA",
   },
   hours: "Monday – Friday · 8:00 AM – 5:00 PM CT",

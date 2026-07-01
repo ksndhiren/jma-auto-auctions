@@ -9,22 +9,70 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VehicleTransportationRouteImport } from './routes/vehicle-transportation'
+import { Route as VehicleMarketplaceRouteImport } from './routes/vehicle-marketplace'
+import { Route as VehicleFinancingRouteImport } from './routes/vehicle-financing'
+import { Route as VehicleConsignmentRouteImport } from './routes/vehicle-consignment'
+import { Route as UsedCarsForSaleRouteImport } from './routes/used-cars-for-sale'
+import { Route as UpcomingAutoAuctionsRouteImport } from './routes/upcoming-auto-auctions'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as SellRouteImport } from './routes/sell'
-import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as SellYourVehicleRouteImport } from './routes/sell-your-vehicle'
+import { Route as RepoCarAuctionsRouteImport } from './routes/repo-car-auctions'
 import { Route as PrivacyRouteImport } from './routes/privacy'
-import { Route as HowToBuyRouteImport } from './routes/how-to-buy'
-import { Route as FaqRouteImport } from './routes/faq'
+import { Route as GovernmentVehicleAuctionsRouteImport } from './routes/government-vehicle-auctions'
+import { Route as FleetVehiclesRouteImport } from './routes/fleet-vehicles'
+import { Route as DealerInventoryRouteImport } from './routes/dealer-inventory'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as CategoriesRouteImport } from './routes/categories'
-import { Route as AuctionAlertsRouteImport } from './routes/auction-alerts'
-import { Route as AccessibilityRouteImport } from './routes/accessibility'
-import { Route as AboutRouteImport } from './routes/about'
+import { Route as CarsForSaleRouteImport } from './routes/cars-for-sale'
+import { Route as BlogRouteImport } from './routes/blog'
+import { Route as AutoAuctionsRouteImport } from './routes/auto-auctions'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
-import { Route as CategoriesSlugRouteImport } from './routes/categories.$slug'
+import { Route as BrowseVansRouteImport } from './routes/browse.vans'
+import { Route as BrowseSuvsRouteImport } from './routes/browse.suvs'
+import { Route as BrowseSedansRouteImport } from './routes/browse.sedans'
+import { Route as BrowsePickupTrucksRouteImport } from './routes/browse.pickup-trucks'
+import { Route as BrowseLuxuryCarsRouteImport } from './routes/browse.luxury-cars'
+import { Route as BrowseHybridVehiclesRouteImport } from './routes/browse.hybrid-vehicles'
+import { Route as BrowseElectricVehiclesRouteImport } from './routes/browse.electric-vehicles'
+import { Route as BrowseCommercialVehiclesRouteImport } from './routes/browse.commercial-vehicles'
+import { Route as BlogTransportationGuidesRouteImport } from './routes/blog.transportation-guides'
+import { Route as BlogSellingGuidesRouteImport } from './routes/blog.selling-guides'
+import { Route as BlogMarketInsightsRouteImport } from './routes/blog.market-insights'
+import { Route as BlogFinancingGuidesRouteImport } from './routes/blog.financing-guides'
+import { Route as BlogBuyingGuidesRouteImport } from './routes/blog.buying-guides'
+import { Route as BlogAutoAuctionGuidesRouteImport } from './routes/blog.auto-auction-guides'
 
+const VehicleTransportationRoute = VehicleTransportationRouteImport.update({
+  id: '/vehicle-transportation',
+  path: '/vehicle-transportation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VehicleMarketplaceRoute = VehicleMarketplaceRouteImport.update({
+  id: '/vehicle-marketplace',
+  path: '/vehicle-marketplace',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VehicleFinancingRoute = VehicleFinancingRouteImport.update({
+  id: '/vehicle-financing',
+  path: '/vehicle-financing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VehicleConsignmentRoute = VehicleConsignmentRouteImport.update({
+  id: '/vehicle-consignment',
+  path: '/vehicle-consignment',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UsedCarsForSaleRoute = UsedCarsForSaleRouteImport.update({
+  id: '/used-cars-for-sale',
+  path: '/used-cars-for-sale',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UpcomingAutoAuctionsRoute = UpcomingAutoAuctionsRouteImport.update({
+  id: '/upcoming-auto-auctions',
+  path: '/upcoming-auto-auctions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -35,14 +83,14 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SellRoute = SellRouteImport.update({
-  id: '/sell',
-  path: '/sell',
+const SellYourVehicleRoute = SellYourVehicleRouteImport.update({
+  id: '/sell-your-vehicle',
+  path: '/sell-your-vehicle',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResourcesRoute = ResourcesRouteImport.update({
-  id: '/resources',
-  path: '/resources',
+const RepoCarAuctionsRoute = RepoCarAuctionsRouteImport.update({
+  id: '/repo-car-auctions',
+  path: '/repo-car-auctions',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -50,14 +98,20 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HowToBuyRoute = HowToBuyRouteImport.update({
-  id: '/how-to-buy',
-  path: '/how-to-buy',
+const GovernmentVehicleAuctionsRoute =
+  GovernmentVehicleAuctionsRouteImport.update({
+    id: '/government-vehicle-auctions',
+    path: '/government-vehicle-auctions',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FleetVehiclesRoute = FleetVehiclesRouteImport.update({
+  id: '/fleet-vehicles',
+  path: '/fleet-vehicles',
   getParentRoute: () => rootRouteImport,
 } as any)
-const FaqRoute = FaqRouteImport.update({
-  id: '/faq',
-  path: '/faq',
+const DealerInventoryRoute = DealerInventoryRouteImport.update({
+  id: '/dealer-inventory',
+  path: '/dealer-inventory',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -65,24 +119,19 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CategoriesRoute = CategoriesRouteImport.update({
-  id: '/categories',
-  path: '/categories',
+const CarsForSaleRoute = CarsForSaleRouteImport.update({
+  id: '/cars-for-sale',
+  path: '/cars-for-sale',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuctionAlertsRoute = AuctionAlertsRouteImport.update({
-  id: '/auction-alerts',
-  path: '/auction-alerts',
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AccessibilityRoute = AccessibilityRouteImport.update({
-  id: '/accessibility',
-  path: '/accessibility',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const AutoAuctionsRoute = AutoAuctionsRouteImport.update({
+  id: '/auto-auctions',
+  path: '/auto-auctions',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -90,141 +139,367 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResourcesSlugRoute = ResourcesSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => ResourcesRoute,
+const BrowseVansRoute = BrowseVansRouteImport.update({
+  id: '/browse/vans',
+  path: '/browse/vans',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const CategoriesSlugRoute = CategoriesSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => CategoriesRoute,
+const BrowseSuvsRoute = BrowseSuvsRouteImport.update({
+  id: '/browse/suvs',
+  path: '/browse/suvs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrowseSedansRoute = BrowseSedansRouteImport.update({
+  id: '/browse/sedans',
+  path: '/browse/sedans',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrowsePickupTrucksRoute = BrowsePickupTrucksRouteImport.update({
+  id: '/browse/pickup-trucks',
+  path: '/browse/pickup-trucks',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrowseLuxuryCarsRoute = BrowseLuxuryCarsRouteImport.update({
+  id: '/browse/luxury-cars',
+  path: '/browse/luxury-cars',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrowseHybridVehiclesRoute = BrowseHybridVehiclesRouteImport.update({
+  id: '/browse/hybrid-vehicles',
+  path: '/browse/hybrid-vehicles',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrowseElectricVehiclesRoute = BrowseElectricVehiclesRouteImport.update({
+  id: '/browse/electric-vehicles',
+  path: '/browse/electric-vehicles',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrowseCommercialVehiclesRoute =
+  BrowseCommercialVehiclesRouteImport.update({
+    id: '/browse/commercial-vehicles',
+    path: '/browse/commercial-vehicles',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogTransportationGuidesRoute =
+  BlogTransportationGuidesRouteImport.update({
+    id: '/transportation-guides',
+    path: '/transportation-guides',
+    getParentRoute: () => BlogRoute,
+  } as any)
+const BlogSellingGuidesRoute = BlogSellingGuidesRouteImport.update({
+  id: '/selling-guides',
+  path: '/selling-guides',
+  getParentRoute: () => BlogRoute,
+} as any)
+const BlogMarketInsightsRoute = BlogMarketInsightsRouteImport.update({
+  id: '/market-insights',
+  path: '/market-insights',
+  getParentRoute: () => BlogRoute,
+} as any)
+const BlogFinancingGuidesRoute = BlogFinancingGuidesRouteImport.update({
+  id: '/financing-guides',
+  path: '/financing-guides',
+  getParentRoute: () => BlogRoute,
+} as any)
+const BlogBuyingGuidesRoute = BlogBuyingGuidesRouteImport.update({
+  id: '/buying-guides',
+  path: '/buying-guides',
+  getParentRoute: () => BlogRoute,
+} as any)
+const BlogAutoAuctionGuidesRoute = BlogAutoAuctionGuidesRouteImport.update({
+  id: '/auto-auction-guides',
+  path: '/auto-auction-guides',
+  getParentRoute: () => BlogRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/accessibility': typeof AccessibilityRoute
-  '/auction-alerts': typeof AuctionAlertsRoute
-  '/categories': typeof CategoriesRouteWithChildren
+  '/auto-auctions': typeof AutoAuctionsRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/cars-for-sale': typeof CarsForSaleRoute
   '/contact': typeof ContactRoute
-  '/faq': typeof FaqRoute
-  '/how-to-buy': typeof HowToBuyRoute
+  '/dealer-inventory': typeof DealerInventoryRoute
+  '/fleet-vehicles': typeof FleetVehiclesRoute
+  '/government-vehicle-auctions': typeof GovernmentVehicleAuctionsRoute
   '/privacy': typeof PrivacyRoute
-  '/resources': typeof ResourcesRouteWithChildren
-  '/sell': typeof SellRoute
+  '/repo-car-auctions': typeof RepoCarAuctionsRoute
+  '/sell-your-vehicle': typeof SellYourVehicleRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
-  '/categories/$slug': typeof CategoriesSlugRoute
-  '/resources/$slug': typeof ResourcesSlugRoute
+  '/upcoming-auto-auctions': typeof UpcomingAutoAuctionsRoute
+  '/used-cars-for-sale': typeof UsedCarsForSaleRoute
+  '/vehicle-consignment': typeof VehicleConsignmentRoute
+  '/vehicle-financing': typeof VehicleFinancingRoute
+  '/vehicle-marketplace': typeof VehicleMarketplaceRoute
+  '/vehicle-transportation': typeof VehicleTransportationRoute
+  '/blog/auto-auction-guides': typeof BlogAutoAuctionGuidesRoute
+  '/blog/buying-guides': typeof BlogBuyingGuidesRoute
+  '/blog/financing-guides': typeof BlogFinancingGuidesRoute
+  '/blog/market-insights': typeof BlogMarketInsightsRoute
+  '/blog/selling-guides': typeof BlogSellingGuidesRoute
+  '/blog/transportation-guides': typeof BlogTransportationGuidesRoute
+  '/browse/commercial-vehicles': typeof BrowseCommercialVehiclesRoute
+  '/browse/electric-vehicles': typeof BrowseElectricVehiclesRoute
+  '/browse/hybrid-vehicles': typeof BrowseHybridVehiclesRoute
+  '/browse/luxury-cars': typeof BrowseLuxuryCarsRoute
+  '/browse/pickup-trucks': typeof BrowsePickupTrucksRoute
+  '/browse/sedans': typeof BrowseSedansRoute
+  '/browse/suvs': typeof BrowseSuvsRoute
+  '/browse/vans': typeof BrowseVansRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/accessibility': typeof AccessibilityRoute
-  '/auction-alerts': typeof AuctionAlertsRoute
-  '/categories': typeof CategoriesRouteWithChildren
+  '/auto-auctions': typeof AutoAuctionsRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/cars-for-sale': typeof CarsForSaleRoute
   '/contact': typeof ContactRoute
-  '/faq': typeof FaqRoute
-  '/how-to-buy': typeof HowToBuyRoute
+  '/dealer-inventory': typeof DealerInventoryRoute
+  '/fleet-vehicles': typeof FleetVehiclesRoute
+  '/government-vehicle-auctions': typeof GovernmentVehicleAuctionsRoute
   '/privacy': typeof PrivacyRoute
-  '/resources': typeof ResourcesRouteWithChildren
-  '/sell': typeof SellRoute
+  '/repo-car-auctions': typeof RepoCarAuctionsRoute
+  '/sell-your-vehicle': typeof SellYourVehicleRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
-  '/categories/$slug': typeof CategoriesSlugRoute
-  '/resources/$slug': typeof ResourcesSlugRoute
+  '/upcoming-auto-auctions': typeof UpcomingAutoAuctionsRoute
+  '/used-cars-for-sale': typeof UsedCarsForSaleRoute
+  '/vehicle-consignment': typeof VehicleConsignmentRoute
+  '/vehicle-financing': typeof VehicleFinancingRoute
+  '/vehicle-marketplace': typeof VehicleMarketplaceRoute
+  '/vehicle-transportation': typeof VehicleTransportationRoute
+  '/blog/auto-auction-guides': typeof BlogAutoAuctionGuidesRoute
+  '/blog/buying-guides': typeof BlogBuyingGuidesRoute
+  '/blog/financing-guides': typeof BlogFinancingGuidesRoute
+  '/blog/market-insights': typeof BlogMarketInsightsRoute
+  '/blog/selling-guides': typeof BlogSellingGuidesRoute
+  '/blog/transportation-guides': typeof BlogTransportationGuidesRoute
+  '/browse/commercial-vehicles': typeof BrowseCommercialVehiclesRoute
+  '/browse/electric-vehicles': typeof BrowseElectricVehiclesRoute
+  '/browse/hybrid-vehicles': typeof BrowseHybridVehiclesRoute
+  '/browse/luxury-cars': typeof BrowseLuxuryCarsRoute
+  '/browse/pickup-trucks': typeof BrowsePickupTrucksRoute
+  '/browse/sedans': typeof BrowseSedansRoute
+  '/browse/suvs': typeof BrowseSuvsRoute
+  '/browse/vans': typeof BrowseVansRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/accessibility': typeof AccessibilityRoute
-  '/auction-alerts': typeof AuctionAlertsRoute
-  '/categories': typeof CategoriesRouteWithChildren
+  '/auto-auctions': typeof AutoAuctionsRoute
+  '/blog': typeof BlogRouteWithChildren
+  '/cars-for-sale': typeof CarsForSaleRoute
   '/contact': typeof ContactRoute
-  '/faq': typeof FaqRoute
-  '/how-to-buy': typeof HowToBuyRoute
+  '/dealer-inventory': typeof DealerInventoryRoute
+  '/fleet-vehicles': typeof FleetVehiclesRoute
+  '/government-vehicle-auctions': typeof GovernmentVehicleAuctionsRoute
   '/privacy': typeof PrivacyRoute
-  '/resources': typeof ResourcesRouteWithChildren
-  '/sell': typeof SellRoute
+  '/repo-car-auctions': typeof RepoCarAuctionsRoute
+  '/sell-your-vehicle': typeof SellYourVehicleRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
-  '/categories/$slug': typeof CategoriesSlugRoute
-  '/resources/$slug': typeof ResourcesSlugRoute
+  '/upcoming-auto-auctions': typeof UpcomingAutoAuctionsRoute
+  '/used-cars-for-sale': typeof UsedCarsForSaleRoute
+  '/vehicle-consignment': typeof VehicleConsignmentRoute
+  '/vehicle-financing': typeof VehicleFinancingRoute
+  '/vehicle-marketplace': typeof VehicleMarketplaceRoute
+  '/vehicle-transportation': typeof VehicleTransportationRoute
+  '/blog/auto-auction-guides': typeof BlogAutoAuctionGuidesRoute
+  '/blog/buying-guides': typeof BlogBuyingGuidesRoute
+  '/blog/financing-guides': typeof BlogFinancingGuidesRoute
+  '/blog/market-insights': typeof BlogMarketInsightsRoute
+  '/blog/selling-guides': typeof BlogSellingGuidesRoute
+  '/blog/transportation-guides': typeof BlogTransportationGuidesRoute
+  '/browse/commercial-vehicles': typeof BrowseCommercialVehiclesRoute
+  '/browse/electric-vehicles': typeof BrowseElectricVehiclesRoute
+  '/browse/hybrid-vehicles': typeof BrowseHybridVehiclesRoute
+  '/browse/luxury-cars': typeof BrowseLuxuryCarsRoute
+  '/browse/pickup-trucks': typeof BrowsePickupTrucksRoute
+  '/browse/sedans': typeof BrowseSedansRoute
+  '/browse/suvs': typeof BrowseSuvsRoute
+  '/browse/vans': typeof BrowseVansRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/about'
-    | '/accessibility'
-    | '/auction-alerts'
-    | '/categories'
+    | '/auto-auctions'
+    | '/blog'
+    | '/cars-for-sale'
     | '/contact'
-    | '/faq'
-    | '/how-to-buy'
+    | '/dealer-inventory'
+    | '/fleet-vehicles'
+    | '/government-vehicle-auctions'
     | '/privacy'
-    | '/resources'
-    | '/sell'
+    | '/repo-car-auctions'
+    | '/sell-your-vehicle'
     | '/sitemap.xml'
     | '/terms'
-    | '/categories/$slug'
-    | '/resources/$slug'
+    | '/upcoming-auto-auctions'
+    | '/used-cars-for-sale'
+    | '/vehicle-consignment'
+    | '/vehicle-financing'
+    | '/vehicle-marketplace'
+    | '/vehicle-transportation'
+    | '/blog/auto-auction-guides'
+    | '/blog/buying-guides'
+    | '/blog/financing-guides'
+    | '/blog/market-insights'
+    | '/blog/selling-guides'
+    | '/blog/transportation-guides'
+    | '/browse/commercial-vehicles'
+    | '/browse/electric-vehicles'
+    | '/browse/hybrid-vehicles'
+    | '/browse/luxury-cars'
+    | '/browse/pickup-trucks'
+    | '/browse/sedans'
+    | '/browse/suvs'
+    | '/browse/vans'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/about'
-    | '/accessibility'
-    | '/auction-alerts'
-    | '/categories'
+    | '/auto-auctions'
+    | '/blog'
+    | '/cars-for-sale'
     | '/contact'
-    | '/faq'
-    | '/how-to-buy'
+    | '/dealer-inventory'
+    | '/fleet-vehicles'
+    | '/government-vehicle-auctions'
     | '/privacy'
-    | '/resources'
-    | '/sell'
+    | '/repo-car-auctions'
+    | '/sell-your-vehicle'
     | '/sitemap.xml'
     | '/terms'
-    | '/categories/$slug'
-    | '/resources/$slug'
+    | '/upcoming-auto-auctions'
+    | '/used-cars-for-sale'
+    | '/vehicle-consignment'
+    | '/vehicle-financing'
+    | '/vehicle-marketplace'
+    | '/vehicle-transportation'
+    | '/blog/auto-auction-guides'
+    | '/blog/buying-guides'
+    | '/blog/financing-guides'
+    | '/blog/market-insights'
+    | '/blog/selling-guides'
+    | '/blog/transportation-guides'
+    | '/browse/commercial-vehicles'
+    | '/browse/electric-vehicles'
+    | '/browse/hybrid-vehicles'
+    | '/browse/luxury-cars'
+    | '/browse/pickup-trucks'
+    | '/browse/sedans'
+    | '/browse/suvs'
+    | '/browse/vans'
   id:
     | '__root__'
     | '/'
-    | '/about'
-    | '/accessibility'
-    | '/auction-alerts'
-    | '/categories'
+    | '/auto-auctions'
+    | '/blog'
+    | '/cars-for-sale'
     | '/contact'
-    | '/faq'
-    | '/how-to-buy'
+    | '/dealer-inventory'
+    | '/fleet-vehicles'
+    | '/government-vehicle-auctions'
     | '/privacy'
-    | '/resources'
-    | '/sell'
+    | '/repo-car-auctions'
+    | '/sell-your-vehicle'
     | '/sitemap.xml'
     | '/terms'
-    | '/categories/$slug'
-    | '/resources/$slug'
+    | '/upcoming-auto-auctions'
+    | '/used-cars-for-sale'
+    | '/vehicle-consignment'
+    | '/vehicle-financing'
+    | '/vehicle-marketplace'
+    | '/vehicle-transportation'
+    | '/blog/auto-auction-guides'
+    | '/blog/buying-guides'
+    | '/blog/financing-guides'
+    | '/blog/market-insights'
+    | '/blog/selling-guides'
+    | '/blog/transportation-guides'
+    | '/browse/commercial-vehicles'
+    | '/browse/electric-vehicles'
+    | '/browse/hybrid-vehicles'
+    | '/browse/luxury-cars'
+    | '/browse/pickup-trucks'
+    | '/browse/sedans'
+    | '/browse/suvs'
+    | '/browse/vans'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
-  AccessibilityRoute: typeof AccessibilityRoute
-  AuctionAlertsRoute: typeof AuctionAlertsRoute
-  CategoriesRoute: typeof CategoriesRouteWithChildren
+  AutoAuctionsRoute: typeof AutoAuctionsRoute
+  BlogRoute: typeof BlogRouteWithChildren
+  CarsForSaleRoute: typeof CarsForSaleRoute
   ContactRoute: typeof ContactRoute
-  FaqRoute: typeof FaqRoute
-  HowToBuyRoute: typeof HowToBuyRoute
+  DealerInventoryRoute: typeof DealerInventoryRoute
+  FleetVehiclesRoute: typeof FleetVehiclesRoute
+  GovernmentVehicleAuctionsRoute: typeof GovernmentVehicleAuctionsRoute
   PrivacyRoute: typeof PrivacyRoute
-  ResourcesRoute: typeof ResourcesRouteWithChildren
-  SellRoute: typeof SellRoute
+  RepoCarAuctionsRoute: typeof RepoCarAuctionsRoute
+  SellYourVehicleRoute: typeof SellYourVehicleRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
+  UpcomingAutoAuctionsRoute: typeof UpcomingAutoAuctionsRoute
+  UsedCarsForSaleRoute: typeof UsedCarsForSaleRoute
+  VehicleConsignmentRoute: typeof VehicleConsignmentRoute
+  VehicleFinancingRoute: typeof VehicleFinancingRoute
+  VehicleMarketplaceRoute: typeof VehicleMarketplaceRoute
+  VehicleTransportationRoute: typeof VehicleTransportationRoute
+  BrowseCommercialVehiclesRoute: typeof BrowseCommercialVehiclesRoute
+  BrowseElectricVehiclesRoute: typeof BrowseElectricVehiclesRoute
+  BrowseHybridVehiclesRoute: typeof BrowseHybridVehiclesRoute
+  BrowseLuxuryCarsRoute: typeof BrowseLuxuryCarsRoute
+  BrowsePickupTrucksRoute: typeof BrowsePickupTrucksRoute
+  BrowseSedansRoute: typeof BrowseSedansRoute
+  BrowseSuvsRoute: typeof BrowseSuvsRoute
+  BrowseVansRoute: typeof BrowseVansRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/vehicle-transportation': {
+      id: '/vehicle-transportation'
+      path: '/vehicle-transportation'
+      fullPath: '/vehicle-transportation'
+      preLoaderRoute: typeof VehicleTransportationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vehicle-marketplace': {
+      id: '/vehicle-marketplace'
+      path: '/vehicle-marketplace'
+      fullPath: '/vehicle-marketplace'
+      preLoaderRoute: typeof VehicleMarketplaceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vehicle-financing': {
+      id: '/vehicle-financing'
+      path: '/vehicle-financing'
+      fullPath: '/vehicle-financing'
+      preLoaderRoute: typeof VehicleFinancingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vehicle-consignment': {
+      id: '/vehicle-consignment'
+      path: '/vehicle-consignment'
+      fullPath: '/vehicle-consignment'
+      preLoaderRoute: typeof VehicleConsignmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/used-cars-for-sale': {
+      id: '/used-cars-for-sale'
+      path: '/used-cars-for-sale'
+      fullPath: '/used-cars-for-sale'
+      preLoaderRoute: typeof UsedCarsForSaleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/upcoming-auto-auctions': {
+      id: '/upcoming-auto-auctions'
+      path: '/upcoming-auto-auctions'
+      fullPath: '/upcoming-auto-auctions'
+      preLoaderRoute: typeof UpcomingAutoAuctionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -239,18 +514,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sell': {
-      id: '/sell'
-      path: '/sell'
-      fullPath: '/sell'
-      preLoaderRoute: typeof SellRouteImport
+    '/sell-your-vehicle': {
+      id: '/sell-your-vehicle'
+      path: '/sell-your-vehicle'
+      fullPath: '/sell-your-vehicle'
+      preLoaderRoute: typeof SellYourVehicleRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/resources': {
-      id: '/resources'
-      path: '/resources'
-      fullPath: '/resources'
-      preLoaderRoute: typeof ResourcesRouteImport
+    '/repo-car-auctions': {
+      id: '/repo-car-auctions'
+      path: '/repo-car-auctions'
+      fullPath: '/repo-car-auctions'
+      preLoaderRoute: typeof RepoCarAuctionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -260,18 +535,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/how-to-buy': {
-      id: '/how-to-buy'
-      path: '/how-to-buy'
-      fullPath: '/how-to-buy'
-      preLoaderRoute: typeof HowToBuyRouteImport
+    '/government-vehicle-auctions': {
+      id: '/government-vehicle-auctions'
+      path: '/government-vehicle-auctions'
+      fullPath: '/government-vehicle-auctions'
+      preLoaderRoute: typeof GovernmentVehicleAuctionsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/faq': {
-      id: '/faq'
-      path: '/faq'
-      fullPath: '/faq'
-      preLoaderRoute: typeof FaqRouteImport
+    '/fleet-vehicles': {
+      id: '/fleet-vehicles'
+      path: '/fleet-vehicles'
+      fullPath: '/fleet-vehicles'
+      preLoaderRoute: typeof FleetVehiclesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dealer-inventory': {
+      id: '/dealer-inventory'
+      path: '/dealer-inventory'
+      fullPath: '/dealer-inventory'
+      preLoaderRoute: typeof DealerInventoryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -281,32 +563,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/categories': {
-      id: '/categories'
-      path: '/categories'
-      fullPath: '/categories'
-      preLoaderRoute: typeof CategoriesRouteImport
+    '/cars-for-sale': {
+      id: '/cars-for-sale'
+      path: '/cars-for-sale'
+      fullPath: '/cars-for-sale'
+      preLoaderRoute: typeof CarsForSaleRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/auction-alerts': {
-      id: '/auction-alerts'
-      path: '/auction-alerts'
-      fullPath: '/auction-alerts'
-      preLoaderRoute: typeof AuctionAlertsRouteImport
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/accessibility': {
-      id: '/accessibility'
-      path: '/accessibility'
-      fullPath: '/accessibility'
-      preLoaderRoute: typeof AccessibilityRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
+    '/auto-auctions': {
+      id: '/auto-auctions'
+      path: '/auto-auctions'
+      fullPath: '/auto-auctions'
+      preLoaderRoute: typeof AutoAuctionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -316,61 +591,155 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/resources/$slug': {
-      id: '/resources/$slug'
-      path: '/$slug'
-      fullPath: '/resources/$slug'
-      preLoaderRoute: typeof ResourcesSlugRouteImport
-      parentRoute: typeof ResourcesRoute
+    '/browse/vans': {
+      id: '/browse/vans'
+      path: '/browse/vans'
+      fullPath: '/browse/vans'
+      preLoaderRoute: typeof BrowseVansRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/categories/$slug': {
-      id: '/categories/$slug'
-      path: '/$slug'
-      fullPath: '/categories/$slug'
-      preLoaderRoute: typeof CategoriesSlugRouteImport
-      parentRoute: typeof CategoriesRoute
+    '/browse/suvs': {
+      id: '/browse/suvs'
+      path: '/browse/suvs'
+      fullPath: '/browse/suvs'
+      preLoaderRoute: typeof BrowseSuvsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/browse/sedans': {
+      id: '/browse/sedans'
+      path: '/browse/sedans'
+      fullPath: '/browse/sedans'
+      preLoaderRoute: typeof BrowseSedansRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/browse/pickup-trucks': {
+      id: '/browse/pickup-trucks'
+      path: '/browse/pickup-trucks'
+      fullPath: '/browse/pickup-trucks'
+      preLoaderRoute: typeof BrowsePickupTrucksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/browse/luxury-cars': {
+      id: '/browse/luxury-cars'
+      path: '/browse/luxury-cars'
+      fullPath: '/browse/luxury-cars'
+      preLoaderRoute: typeof BrowseLuxuryCarsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/browse/hybrid-vehicles': {
+      id: '/browse/hybrid-vehicles'
+      path: '/browse/hybrid-vehicles'
+      fullPath: '/browse/hybrid-vehicles'
+      preLoaderRoute: typeof BrowseHybridVehiclesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/browse/electric-vehicles': {
+      id: '/browse/electric-vehicles'
+      path: '/browse/electric-vehicles'
+      fullPath: '/browse/electric-vehicles'
+      preLoaderRoute: typeof BrowseElectricVehiclesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/browse/commercial-vehicles': {
+      id: '/browse/commercial-vehicles'
+      path: '/browse/commercial-vehicles'
+      fullPath: '/browse/commercial-vehicles'
+      preLoaderRoute: typeof BrowseCommercialVehiclesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/transportation-guides': {
+      id: '/blog/transportation-guides'
+      path: '/transportation-guides'
+      fullPath: '/blog/transportation-guides'
+      preLoaderRoute: typeof BlogTransportationGuidesRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/selling-guides': {
+      id: '/blog/selling-guides'
+      path: '/selling-guides'
+      fullPath: '/blog/selling-guides'
+      preLoaderRoute: typeof BlogSellingGuidesRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/market-insights': {
+      id: '/blog/market-insights'
+      path: '/market-insights'
+      fullPath: '/blog/market-insights'
+      preLoaderRoute: typeof BlogMarketInsightsRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/financing-guides': {
+      id: '/blog/financing-guides'
+      path: '/financing-guides'
+      fullPath: '/blog/financing-guides'
+      preLoaderRoute: typeof BlogFinancingGuidesRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/buying-guides': {
+      id: '/blog/buying-guides'
+      path: '/buying-guides'
+      fullPath: '/blog/buying-guides'
+      preLoaderRoute: typeof BlogBuyingGuidesRouteImport
+      parentRoute: typeof BlogRoute
+    }
+    '/blog/auto-auction-guides': {
+      id: '/blog/auto-auction-guides'
+      path: '/auto-auction-guides'
+      fullPath: '/blog/auto-auction-guides'
+      preLoaderRoute: typeof BlogAutoAuctionGuidesRouteImport
+      parentRoute: typeof BlogRoute
     }
   }
 }
 
-interface CategoriesRouteChildren {
-  CategoriesSlugRoute: typeof CategoriesSlugRoute
+interface BlogRouteChildren {
+  BlogAutoAuctionGuidesRoute: typeof BlogAutoAuctionGuidesRoute
+  BlogBuyingGuidesRoute: typeof BlogBuyingGuidesRoute
+  BlogFinancingGuidesRoute: typeof BlogFinancingGuidesRoute
+  BlogMarketInsightsRoute: typeof BlogMarketInsightsRoute
+  BlogSellingGuidesRoute: typeof BlogSellingGuidesRoute
+  BlogTransportationGuidesRoute: typeof BlogTransportationGuidesRoute
 }
 
-const CategoriesRouteChildren: CategoriesRouteChildren = {
-  CategoriesSlugRoute: CategoriesSlugRoute,
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogAutoAuctionGuidesRoute: BlogAutoAuctionGuidesRoute,
+  BlogBuyingGuidesRoute: BlogBuyingGuidesRoute,
+  BlogFinancingGuidesRoute: BlogFinancingGuidesRoute,
+  BlogMarketInsightsRoute: BlogMarketInsightsRoute,
+  BlogSellingGuidesRoute: BlogSellingGuidesRoute,
+  BlogTransportationGuidesRoute: BlogTransportationGuidesRoute,
 }
 
-const CategoriesRouteWithChildren = CategoriesRoute._addFileChildren(
-  CategoriesRouteChildren,
-)
-
-interface ResourcesRouteChildren {
-  ResourcesSlugRoute: typeof ResourcesSlugRoute
-}
-
-const ResourcesRouteChildren: ResourcesRouteChildren = {
-  ResourcesSlugRoute: ResourcesSlugRoute,
-}
-
-const ResourcesRouteWithChildren = ResourcesRoute._addFileChildren(
-  ResourcesRouteChildren,
-)
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
-  AccessibilityRoute: AccessibilityRoute,
-  AuctionAlertsRoute: AuctionAlertsRoute,
-  CategoriesRoute: CategoriesRouteWithChildren,
+  AutoAuctionsRoute: AutoAuctionsRoute,
+  BlogRoute: BlogRouteWithChildren,
+  CarsForSaleRoute: CarsForSaleRoute,
   ContactRoute: ContactRoute,
-  FaqRoute: FaqRoute,
-  HowToBuyRoute: HowToBuyRoute,
+  DealerInventoryRoute: DealerInventoryRoute,
+  FleetVehiclesRoute: FleetVehiclesRoute,
+  GovernmentVehicleAuctionsRoute: GovernmentVehicleAuctionsRoute,
   PrivacyRoute: PrivacyRoute,
-  ResourcesRoute: ResourcesRouteWithChildren,
-  SellRoute: SellRoute,
+  RepoCarAuctionsRoute: RepoCarAuctionsRoute,
+  SellYourVehicleRoute: SellYourVehicleRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
+  UpcomingAutoAuctionsRoute: UpcomingAutoAuctionsRoute,
+  UsedCarsForSaleRoute: UsedCarsForSaleRoute,
+  VehicleConsignmentRoute: VehicleConsignmentRoute,
+  VehicleFinancingRoute: VehicleFinancingRoute,
+  VehicleMarketplaceRoute: VehicleMarketplaceRoute,
+  VehicleTransportationRoute: VehicleTransportationRoute,
+  BrowseCommercialVehiclesRoute: BrowseCommercialVehiclesRoute,
+  BrowseElectricVehiclesRoute: BrowseElectricVehiclesRoute,
+  BrowseHybridVehiclesRoute: BrowseHybridVehiclesRoute,
+  BrowseLuxuryCarsRoute: BrowseLuxuryCarsRoute,
+  BrowsePickupTrucksRoute: BrowsePickupTrucksRoute,
+  BrowseSedansRoute: BrowseSedansRoute,
+  BrowseSuvsRoute: BrowseSuvsRoute,
+  BrowseVansRoute: BrowseVansRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

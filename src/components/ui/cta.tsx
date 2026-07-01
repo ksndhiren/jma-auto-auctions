@@ -7,7 +7,7 @@ type Variant = "gold" | "dark" | "outline" | "outline-light" | "ghost";
 type Size = "sm" | "md" | "lg";
 
 const base =
-  "group/cta inline-flex items-center justify-center gap-2 whitespace-nowrap leading-none font-semibold uppercase tracking-[0.12em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:cursor-not-allowed";
+  "group/cta inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap text-center leading-none font-semibold uppercase tracking-[0.12em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:cursor-not-allowed";
 
 const variants: Record<Variant, string> = {
   gold: "bg-gold text-black hover:bg-gold-dark",

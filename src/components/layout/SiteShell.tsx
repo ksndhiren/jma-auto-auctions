@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { CookieConsent } from "./CookieConsent";
 import { SiteHeader } from "./SiteHeader";
 import { SiteFooter } from "./SiteFooter";
 
@@ -8,6 +9,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <SiteHeader />
       <main className="flex-1">{children}</main>
       <SiteFooter />
+      <CookieConsent />
     </div>
   );
 }
